@@ -460,7 +460,11 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
     @Override
     public void onItemClick(View view, int position) {
 
+        //incViews if post hass been approved
+        if(adapter.getItem(position).getStatus() == 1)
         updateViews(incViewUrl,adapter.getItem(position).getId());
+
+
         Bundle bundle = new Bundle();
 
 //        bundle.putInt("post",adapter.getItem(position).getId());
@@ -478,8 +482,10 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
                     if (postDetails.getMaxLines() == 3) {
                         postDetails.setMaxLines(1000);
                         seeMore.setVisibility(View.GONE);
-                        //incViews
+                        //incViews if post hass been approved
+                        if(adapter.getItem(position).getStatus() == 1)
                         updateViews(incViewUrl,adapter.getItem(position).getId());
+
                     } else {
                         postDetails.setMaxLines(3);
                         seeMore.setVisibility(View.VISIBLE);
@@ -588,6 +594,7 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
             sortByCat=1;
         }
         else {sortByCat=0;}
+        loading.setVisibility(View.VISIBLE);
         onRefresh();
     }
 }

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
- <androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
-    >
-
-     <androidx.cardview.widget.CardView
-         android:id="@+id/cardView"
+    android:id="@+id/cardView"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
 
@@ -17,9 +13,7 @@
          android:elevation="3dp"
          app:cardBackgroundColor="@color/cardview_light_background"
          app:cardCornerRadius="30dp"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toTopOf="parent"
+
 
          >
 
@@ -39,7 +33,7 @@
                  android:text="name namesonname names onname nameson"
                  android:textColor="#000"
                  android:textDirection="rtl"
-                 android:textSize="20sp"
+                 android:textSize="18sp"
                  android:textStyle="bold"
 
                  />
@@ -53,7 +47,7 @@
                  android:padding="5dp"
                  android:text="commmmmmmmmentmment vgvfvgf"
                  android:textDirection="rtl"
-                 android:textSize="18sp"
+                 android:textSize="16sp"
 
                  />
              <!--        <View-->
@@ -99,5 +93,3 @@
 
      </androidx.cardview.widget.CardView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>

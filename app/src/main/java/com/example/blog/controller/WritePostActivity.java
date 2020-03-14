@@ -156,6 +156,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
             @Override
             public void onClick(View view) {
 
+                tag.clearFocus();
                 getTags();
 
                 if(checkPostData()) {
@@ -221,6 +222,18 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
 
         final LinearLayout tagLL=findViewById(R.id.tagsLayout);
         tagList=new ArrayList<>();
+
+        tag.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(!b){
+                    if(!tag.getText().toString().equals("") && !tag.getText().toString().equals(" "))
+                    {
+                        tag.setText(tag.getText().toString()+" ");
+                    }
+                }
+            }
+        });
         tag.addTextChangedListener(new TextValidator(tag) {
             @Override public void validate(TextView textView, String text) {
 
@@ -229,6 +242,8 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
 //
 //                }
                 if(!text.equals(" ")&& !text.equals("")) {
+
+
                     if (text.endsWith(" ")) {
                         LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         final View v = vi.inflate(R.layout.tag, null);
@@ -247,6 +262,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
 //                        Toast.makeText(getApplicationContext(),"/"+tagList.size(),Toast.LENGTH_SHORT).show();
 
                         tag.setText("");
+
                         tagBody.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

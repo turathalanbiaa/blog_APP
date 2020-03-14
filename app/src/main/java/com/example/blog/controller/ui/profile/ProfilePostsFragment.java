@@ -368,8 +368,10 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
         if (postDetails.getMaxLines() == 3) {
             postDetails.setMaxLines(1000);
             seeMore.setVisibility(View.GONE);
-            //incViews
+            //incViews if post hass been approved
+            if(adapter.getItem(position).getStatus() == 1)
             updateViews(incViewUrl,adapter.getItem(position).getId());
+
         } else {
             postDetails.setMaxLines(3);
             seeMore.setVisibility(View.VISIBLE);

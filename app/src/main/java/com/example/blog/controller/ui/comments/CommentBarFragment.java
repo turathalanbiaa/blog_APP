@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,7 +53,7 @@ public class CommentBarFragment extends Fragment {
     int postId;
     boolean actLoggedIn=false;
     OnCommentSent dataPasser;
-    Button sendComment;
+    ImageButton sendComment;
 
 
     @Override

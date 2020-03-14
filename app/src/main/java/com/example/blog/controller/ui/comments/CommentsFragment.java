@@ -262,9 +262,9 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
             }
             else {TOTAL_PAGES=response.getInt("last_page");}
 
-            if(TOTAL_PAGES==0){
-                Toast.makeText(getContext(),R.string.no_comments,Toast.LENGTH_SHORT).show();
-            }
+//            if(TOTAL_PAGES==0){
+//                Toast.makeText(getContext(),R.string.no_comments,Toast.LENGTH_SHORT).show();
+//            }
 
 
             JSONArray data=response.getJSONArray("data");

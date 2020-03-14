@@ -55,7 +55,7 @@
            android:padding="10dp"
             android:text="اسم المستخدم"
             android:textDirection="rtl"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 </FrameLayout>

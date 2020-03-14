@@ -88,6 +88,9 @@
             android:name="catId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_nav_cat_posts_to_nav_post"
+            app:destination="@id/nav_post" />
     </fragment>
 
 
