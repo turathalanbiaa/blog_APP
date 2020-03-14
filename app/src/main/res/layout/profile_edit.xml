@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:padding="5dp"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="35dp"
+
+
+        >
+
+        <ImageView
+            android:id="@+id/ph_profilePic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/default_profile_pic"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/getImgFromGallary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_button3"
+        android:text="اختيار صورة"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_menu_gallery"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+
+        />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+
+    <EditText
+
+        android:id="@+id/ph_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/myfont"
+        android:layout_weight="1"
+        android:text="اسم المستخدم"
+        android:textDirection="rtl"
+        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:fontFamily="@font/myfont"
+
+
+            android:textSize="16dp"
+            android:text="الاسم الظاهر:"/>
+    </LinearLayout>
+
+<!--    <View-->
+<!--        android:id="@+id/divider5"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="?android:attr/listDivider"-->
+<!--        android:layout_margin="5dp"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الغاء"
+            android:fontFamily="@font/myfont"
+            android:textSize="20sp"
+            android:background="@drawable/bg_button"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="موافق"
+            android:fontFamily="@font/myfont"
+            android:textSize="20sp"
+            android:background="@drawable/bg_button"
+            android:padding="10dp"
+
+            android:layout_marginRight="10dp"
+
+            android:layout_weight="1"
+            />
+
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+<!--    <color name="colorPrimaryDark">#00574B</color>-->
+    <color name="colorPrimaryDark">#2f763a</color>
+    <color name="colorAccent">#4D774A</color>
+
+
+    <color name="transparentGrey">#6AFFFDFD</color>
+    <color name="edge">#9DB89B</color>
+    <color name="grayBackground">#4D774A</color>
+
+    <color name="tag_begin">#9DB89B</color>
+    <color name="tag_end">#9DB89B</color>
+
+    <color name="gradiant_begin">#4D774A</color>
+    <color name="gradiant_end">#86AA83</color>
+
+
+
+    <color name="side_nav_begin">#9DB89B</color>
+    <color name="side_nav_end">#9DB89B</color>
+</resources>

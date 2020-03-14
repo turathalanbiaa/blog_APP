@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Blog</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">الصفحة الرئيسية</string>
+    <string name="menu_all_blogs">جميع التدوينات</string>
+    <string name="menu_bloggers">المدونون</string>
+    <string name="menu_categories">الاصناف</string>
+    <string name="menu_register">تسجيل حساب جديد</string>
+    <string name="menu_login">تسجيل الدخول</string>
+    <string name="menu_logout">تسجيل الخروج</string>
+
+    //text hints/labels
+    <string name="search_users">بحث عن مستخدم</string>
+    <string name="total_posts">عدد التدوينات</string>
+    <string name="points">النقاط</string>
+
+
+    //edit text errors
+    <string name="empty_field_error">حقل مطلوب</string>
+    <string name="min_char_error">الحد الأدنى 6 احرف او ارقام</string>
+    <string name="email_format_error">must enter valid email</string>
+    <string name="password_mismatch_error">عدم تطابق الرمز السري</string>
+
+    //sort menu
+    <string name="latest">احدث التدوينات</string>
+    <string name="oldest">جميع التدوينات</string>
+    <string name="most_viewed">يتصدر الان</string>
+
+    //dialog
+    <string name="delete">حذف؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="uploading">تحميل...</string>
+
+    //toast messages
+    <string name="no_comments">لايوجد اي تعليقات</string>
+    <string name="must_login_to_post">يجب تسجيل الدخول</string>
+    <string name="check_fields_for_error">تحقق من الحقول للخطأ</string>
+    <string name="comment_sent">تم ارسال التعليق</string>
+    <string name="comment_not_sent">خطأ، حاول مرة أخرى</string>
+    <string name="login_credentials_wrong">خطأ في الرمز السري او المعرف</string>
+    <string name="server_error">حدث خطأ ما, حاول مرة أخرى</string>
+    <string name="no_posts">لايوجد اي تدوينات</string>
+    <string name="upload_complete">تم الرفع</string>
+    <string name="upload_failed">فشل الرفع</string>
+    <string name="delete_complete">تم الحذف</string>
+    <string name="delete_failed"> فشل الحذف</string>
+
+    //loading errors
+    <string name="no_connection">لا يوجد اتصال...</string>
+    <string name="error">error</string>
+    <string name="retry">retry</string>
+
+
+    <string name="facebook_app_id">245801286410441</string>
+    <string name="fb_login_protocol_scheme">fb245801286410441</string>
+
+
+
+</resources>

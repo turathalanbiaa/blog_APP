@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/commentsLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_round_corner"
+    app:layout_constraintCircleRadius="533dp"
+    android:orientation="vertical"
+
+    >
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <TextView
+            android:id="@+id/comment_refresh"
+            android:paddingTop="5dp"
+            android:paddingRight="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="التعليقات:"
+            android:fontFamily="@font/myfont"
+            android:textSize="26sp"
+            android:textDirection="rtl"
+            android:layout_gravity="right"
+
+            android:paddingLeft="14dp"
+
+            />
+    </FrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+       >
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+<!--    <include-->
+<!--        layout="@layout/comment_bar"-->
+<!--        />-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commentBarFrame"
+        android:name="com.example.commentBarFrame"
+        />
+
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/commentBar"-->
+<!--        android:name="com.example.blog.controller.ui.comments.CommentBarFragment"-->
+
+<!--        />-->
+
+
+</LinearLayout>

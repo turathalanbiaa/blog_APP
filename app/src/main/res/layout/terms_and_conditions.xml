@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="20dp" />
+
+    <TextView
+        android:id="@+id/signin_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="تسجيل حساب جديد"
+        android:fontFamily="@font/myfont"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+
+        app:layout_constraintTop_toBottomOf="@id/signin_label">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/conditions_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/myfont"
+                android:text="1. أن يكون المقال مكتوباً باللغة العربية الفصحى، مع مراعاة الدقة في الإملاء والقواعد قدر الإمكان وخصوصاً في الايات القرآنية وأحاديث المعصومين (ع)"
+
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="2. يقتصر مجال النشر في مدونة أقلام على المواضيع الإسلامية والعلمية والتربوية والاجتماعية والأدبية وكل ما من شأنه أن يساهم في زيادة الوعي الإيجابي في المجتمع."
+
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="3. أن يتضمن المقال وجهة النظر الشخصية للكاتب في الموضوع مراد معالجته أو طرحه، للحفاظ على أصالة المحتوى والابتعاد عن تكرار الأفكار المطروحة على المنصات الأخرى."
+
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="4. لا ضير من استعمال الاقتباسات التي قد تعزز وجهة نظر الكاتب، مع ضرورة الاهتمام بقواعد الاقتباس المعروفة (علامات التنصيص، قصر الفقرة المقتبسة، ذكر المصدر)."
+
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="5. الاهتمام بالإشارة إلى المصادر في الأحداث والأفكار والشخصيات التي تم ذكرها في المقال."
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="6. بالنسبة للمقالات المترجمة، يجب مراعاة وضع رابط المقال بلغته الأصلية وعدم التصرف بالترجمة بالشكل الذي قد يؤثر على موضوعية المقال الأصلي."
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="7. لطالما تم الحكم على بعض المقالات من عناوينها فحسب، لذا يرجى مراعاة اختيار عنوان مناسب للمقال بحيث يكون معبراً عن المحتوى."
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="8. التعصب لفكرة ما قد يسلبها قيمتها العلمية ويتسبب بنفور القارئ من إكمال المقال، لذا يرجى اعتماد الموضوعية والتجرد والحياد في المحتوى المطروح قدر الإمكان."
+                android:textSize="18dp" />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/myfont"
+                android:text="9. استعمال الروابط والصور يجب أن يكون مرتبطاً بالموضوع، مع مراعاة الابتعاد عن أي صورة قد تكون مستفزة للقارئ أو خادشة لحيائه."
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/agree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="موافق"
+                android:fontFamily="@font/myfont"
+                android:textSize="24dp"
+                android:background="@drawable/bg_button"
+                android:padding="15dp"
+                android:layout_marginVertical="30dp"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.blog.controller.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <argument
+            android:name="catId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_post"
+            app:destination="@id/nav_post" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_cat_posts"
+            app:destination="@id/nav_cat_posts" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_bloggers"
+        android:name="com.example.blog.controller.ui.bloggers.BloggersFragment"
+        android:label="@string/menu_bloggers"
+        tools:layout="@layout/fragment_bloggers" />
+
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="com.example.blog.controller.ui.category.CategoriesFragment"
+        android:label="@string/menu_categories"
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_nav_categories_to_nav_cat_posts"
+            app:destination="@id/nav_cat_posts"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+    </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_share"-->
+<!--        android:name="com.example.blog.controller.ui.share.ProfileFragment"-->
+<!--        android:label="@string/menu_share"-->
+<!--        tools:layout="@layout/activity_profile" />-->
+
+    <activity
+        android:id="@+id/nav_register"
+        android:name="com.example.blog.controller.RegisterActivity"
+   />
+
+    <activity
+        android:id="@+id/nav_login"
+        android:name="com.example.blog.controller.LoginActivity"
+
+        />
+
+    <action
+        android:id="@+id/nav_logout"
+        app:destination="@+id/nav_logoutAct"
+
+        >
+        <argument
+            android:name="loggedOut"
+            android:defaultValue="true" />
+
+    </action>
+
+
+    <fragment
+        android:id="@+id/nav_post"
+        android:name="com.example.blog.controller.ui.comments.ExpandedPostFragment"
+        android:label=""
+        tools:layout="@layout/expanded_post">
+        <action
+            android:id="@+id/action_nav_post_to_nav_cat_posts"
+            app:destination="@id/nav_cat_posts" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_cat_posts"
+        android:name="com.example.blog.controller.ui.home.PostsByCatFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="catId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+
+
+    <activity
+        android:id="@+id/nav_profile"
+        android:name="com.example.blog.controller.ui.profile.ProfileActivity"
+        />
+
+    <activity
+        android:id="@+id/nav_logoutAct"
+        android:name="com.example.blog.controller.LogoutActivity"
+        />
+
+
+
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_send"-->
+<!--        android:name="com.example.blog.controller.ui.send.SendFragment"-->
+<!--        android:label="@string/menu_send"/>-->
+<!--        tools:layout="@layout/activity_write_post" />-->
+</navigation>
