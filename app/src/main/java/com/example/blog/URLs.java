@@ -1,9 +1,9 @@
 package com.example.blog;
 
 public class URLs {
-    private String baseUrl="http://192.168.9.110:8000/api/";
-
-//    private String baseUrl="http://blog-api.turathalanbiaa.com/api/";
+//    private String baseUrl="http://192.168.9.110:8000/api/";
+//
+    private String baseUrl="http://blog-api.turathalanbiaa.com/api/";
     private String route;
     private String categories="cat";
     private String sendPost="addposts";
@@ -24,9 +24,9 @@ public class URLs {
     private String searchForUsers="getSearchResults";
     private String fbLoginInDb="registerbyfacebook";
 
-//    private String imagePath="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/";
+    private String imagePath="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/";
 //    private String imagePath="http://blog-api.turathalanbiaa.com/";
-    private String imagePath="http://192.168.9.110/blog/public/images/";
+//    private String imagePath="http://192.168.9.110/blog/public/images/";
 
 
 

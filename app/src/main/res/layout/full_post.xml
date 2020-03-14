@@ -184,7 +184,8 @@
                 android:maxWidth="200dp"
                 android:textStyle="italic"
                 android:gravity="center"
-
+                android:minHeight="0dp"
+                android:padding="5dp"
 
                 />
         </LinearLayout>

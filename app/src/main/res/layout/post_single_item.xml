@@ -219,6 +219,8 @@
                 android:layout_marginRight="5dp"
                 android:maxWidth="200dp"
 
+                android:minHeight="0dp"
+                android:padding="5dp"
 
                 />
 
