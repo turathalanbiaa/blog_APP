@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,8 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
+        progress.setTitle(R.string.menu_login);
+        progress.setMessage(getResources().getString(R.string.wait));
         progress.setCancelable(false);
 
         username=findViewById(R.id.user_name);
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //make api call
-                hideKeyboard(LoginActivity.this);
+//                hideKeyboard(LoginActivity.this);
                 progress.show();
                 makeApiCall(username.getText().toString(), password.getText().toString());
 

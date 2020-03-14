@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layoutDirection="ltr"
             >
             <TextView
                 android:id="@+id/time"
@@ -41,6 +42,7 @@
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/ic_date_range_black_24dp"
                 android:gravity="center"
+
 
                 />
         <TextView
@@ -55,6 +57,7 @@
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
+
             />
 
         </LinearLayout>
@@ -167,6 +170,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp"
+            android:layoutDirection="ltr"
             >
 
             <TextView

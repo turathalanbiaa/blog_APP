@@ -36,7 +36,8 @@
     <string name="delete">حذف؟</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
-    <string name="uploading">تحميل...</string>
+    <string name="loading">تحميل...</string>
+    <string name="wait">الرجاء الإنتظار</string>
 
     //toast messages
     <string name="no_comments">لايوجد اي تعليقات</string>

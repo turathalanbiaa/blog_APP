@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
         }
 
 
-
        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +154,16 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
         }
         else{
             nameTextView.setText("guest");
+        }
+
+
+        Intent intent=getIntent();
+        int catId=intent.getIntExtra("catId",0);
+        if(catId!=0){
+            Bundle bundle = new Bundle();
+            bundle.putInt("catId",catId);
+            navController.navigate(R.id.nav_cat_posts,bundle);
+
         }
 
 

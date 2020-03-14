@@ -45,6 +45,7 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
 
     private boolean isLoadingAdded = false;
+    private ClickListenerInterface mCatClickListener;
 
     public ProfilePostsRecyclerAdapter(Context context, boolean myProfile) {
         this.context = context;
@@ -246,8 +247,8 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             edit.setOnClickListener(editClickListener);
             delete.setOnClickListener(deleteClickListener);
             contentll.setOnClickListener(postListener);
-//
 
+            catBtn.setOnClickListener(catListener);
 
             if(myProfile) {
                 delete.setVisibility(View.VISIBLE);
@@ -297,6 +298,13 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
             }
         };
+        View.OnClickListener catListener = new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View view) {
+                if (mCatClickListener!= null)mCatClickListener.onCatClick(view, getAdapterPosition());
+
+            }
+        };
 
     }
 
@@ -331,6 +339,11 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     //delete
     void setProfileClickListener(ClickListenerInterface profileClickListener) {
         this.mDeleteClickListener = profileClickListener;
+    }
+
+    //on category click
+    void setCatClickListener(ClickListenerInterface catClickListener) {
+        this.mCatClickListener = catClickListener;
     }
 
 

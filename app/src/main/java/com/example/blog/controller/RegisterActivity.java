@@ -54,8 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
+        progress.setTitle(R.string.menu_register);
+        progress.setMessage(getResources().getString(R.string.wait));
         progress.setCancelable(false);
 
         termsAndConditions();

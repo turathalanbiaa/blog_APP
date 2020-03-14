@@ -20,13 +20,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="30dp" />
+
     <TextView
         android:id="@+id/signin_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="تسجيل حساب جديد"
         android:fontFamily="@font/myfont"
+        android:text="تسجيل حساب جديد"
         android:textSize="25dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -36,83 +37,78 @@
         android:id="@+id/user_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="14dp"
-        android:background="@drawable/bg_edittext"
         android:layout_marginTop="40dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/myfont"
+        android:hint="المعرف"
+        android:inputType="textEmailAddress"
+        android:padding="14dp"
+        android:textDirection="rtl"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/signin_label"
-        android:inputType="textEmailAddress"
-        android:hint="المعرف"
-        android:fontFamily="@font/myfont"
-        android:textDirection="rtl"
-        />
+        app:layout_constraintTop_toBottomOf="@id/signin_label" />
 
     <EditText
         android:id="@+id/public_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="14dp"
-        android:background="@drawable/bg_edittext"
         android:layout_marginTop="30dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/myfont"
+        android:hint="الاسم الظاهر"
+        android:inputType="textPersonName"
+        android:padding="14dp"
+        android:textDirection="rtl"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/user_name"
-        android:inputType="textPersonName"
-        android:hint="الاسم الظاهر"
-        android:fontFamily="@font/myfont"
-        android:textDirection="rtl"
-        />
+        app:layout_constraintTop_toBottomOf="@id/user_name" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="14dp"
-        android:background="@drawable/bg_edittext"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/public_name"
-        android:inputType="textPassword"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/myfont"
         android:gravity="right"
         android:hint="الرمز السري"
-        android:fontFamily="@font/myfont"
+        android:inputType="textPassword"
+        android:padding="14dp"
         android:textDirection="rtl"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/public_name" />
 
     <EditText
         android:id="@+id/password_repeat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="14dp"
-        android:background="@drawable/bg_edittext"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        android:inputType="textPassword"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/myfont"
         android:gravity="right"
         android:hint="تاكيد الرمز السري"
-        android:fontFamily="@font/myfont"
-
+        android:inputType="textPassword"
+        android:padding="14dp"
         android:textDirection="rtl"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+
+        app:layout_constraintTop_toBottomOf="@id/password" />
 
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginHorizontal="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@id/password_repeat"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_button"
+        android:fontFamily="@font/myfont"
         android:padding="15dp"
         android:text="انشاء حساب"
-        android:fontFamily="@font/myfont"
         android:textSize="24dp"
-        android:background="@drawable/bg_button"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/password_repeat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

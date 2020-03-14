@@ -3,7 +3,6 @@ package com.example.blog.controller.ui.profile;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -33,16 +32,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.VolleyError;
-import com.example.blog.MainActivity;
 import com.example.blog.R;
 import com.example.blog.URLs;
 import com.example.blog.controller.tools.SwipeDismissTouchListener;
 import com.example.blog.controller.tools.TextValidator;
 import com.example.blog.controller.tools.volley.FetchJson;
 import com.example.blog.controller.tools.volley.IResult;
-import com.example.blog.controller.ui.comments.CommentBarFragment;
-import com.example.blog.controller.ui.comments.CommentsFragment;
-import com.facebook.AccessToken;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -294,7 +289,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
                     public void onProgress(long uploaded, long total) {
 
 //
-                        tvText.setText((getResources().getString(R.string.uploading)+" "+uploaded*100/total+"%"));
+                        tvText.setText((getResources().getString(R.string.loading)+" "+uploaded*100/total+"%"));
 
 //                        Toast.makeText(getApplicationContext(), uploaded+"/"+total,Toast.LENGTH_SHORT).show();
 

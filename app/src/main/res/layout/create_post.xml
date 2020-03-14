@@ -112,6 +112,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/bg_edittext"
             android:padding="5dp"
+            android:layoutDirection="ltr"
             >
             <LinearLayout
                 android:id="@+id/tagsLayout"

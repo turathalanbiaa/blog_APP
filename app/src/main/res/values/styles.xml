@@ -23,5 +23,11 @@
 
     </style>
 
+    <style name="AlertDialogCustom" parent="Base.Theme.AppCompat.Light.Dialog.Alert">
+       <item name="android:fontFamily">@font/myfont</item>
+        <item name="dialogCornerRadius">20dp</item>
+
+
+    </style>
 
 </resources>

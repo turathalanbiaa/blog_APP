@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.blog.MainActivity;
 import com.example.blog.R;
 import com.example.blog.URLs;
 import com.example.blog.controller.WritePostActivity;
@@ -47,6 +48,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ProfilePostsFragment extends Fragment implements ClickListenerInterface {
 
@@ -114,6 +117,8 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
         adapter.setPostExpandClickListener(this);
         //delete
         adapter.setProfileClickListener(this);
+        //cat
+        adapter.setCatClickListener(this);
 
         recyclerView.setAdapter(adapter);
 
@@ -460,7 +465,7 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
             }
         };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialogCustom);
         builder.setMessage(R.string.delete).setPositiveButton(R.string.yes, dialogClickListener)
                 .setNegativeButton(R.string.no, dialogClickListener).show();
 
@@ -486,6 +491,9 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
 
 //        Bundle bundle = new Bundle();
 //        bundle.putInt("catId",adapter.getItem(position).getCategory_id());
+        Intent intent =new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("catId",adapter.getItem(position).getCategory_id());
+        startActivity(intent);
 //
     }
 }

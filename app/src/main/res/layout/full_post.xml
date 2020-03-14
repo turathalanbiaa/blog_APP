@@ -135,6 +135,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="7dp"
+            android:layoutDirection="ltr"
             >
             <TextView
                 android:id="@+id/time"

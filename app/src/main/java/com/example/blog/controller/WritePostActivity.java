@@ -1,27 +1,19 @@
 package com.example.blog.controller;
 
 import android.app.Activity;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.ProgressDialog;
-import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.KeyboardShortcutGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +61,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class WritePostActivity extends AppCompatActivity implements CatDropDownFragment.OnDataPass {
 
@@ -483,7 +474,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
                     .uploadProgressHandler(new ProgressCallback() {
                         @Override
                         public void onProgress(long uploaded, long total) {
-                            tvText.setText((getResources().getString(R.string.uploading)+" "+uploaded*100/total+"%"));
+                            tvText.setText((getResources().getString(R.string.loading)+" "+uploaded*100/total+"%"));
 //                        Toast.makeText(getApplicationContext(), uploaded+"/"+total,Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onProgress: "+uploaded+"/"+total);
                         }
@@ -527,7 +518,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
                     .uploadProgressHandler(new ProgressCallback() {
                         @Override
                         public void onProgress(long uploaded, long total) {
-                            tvText.setText((getResources().getString(R.string.uploading) + " " + uploaded * 100 / total + "%"));
+                            tvText.setText((getResources().getString(R.string.loading) + " " + uploaded * 100 / total + "%"));
 //                        Toast.makeText(getApplicationContext(), uploaded+"/"+total,Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onProgress: " + uploaded + "/" + total);
                         }
