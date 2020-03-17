@@ -24,10 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.example.blog.MainActivity;
 import com.example.blog.R;
 import com.example.blog.URLs;
 import com.example.blog.controller.tools.volley.FetchJson;
 import com.example.blog.controller.tools.volley.IResult;
+import com.example.blog.controller.ui.comments.CommentBarFragment;
 import com.example.blog.controller.ui.home.HomeFragment;
 import com.example.blog.model.Categories;
 import com.facebook.AccessToken;
@@ -42,7 +44,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity implements EditProfileDialogFragment.OnProfileDataPass {
+public class ProfileActivity extends AppCompatActivity implements EditProfileDialogFragment.OnProfileDataPass, CommentBarFragment.OnCommentSent {
 
     ImageView profilePic,background;
     TextView name;
@@ -55,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
     FetchJson mVolleyService;
     int points;
     boolean myProfile=false;
+    private CommentFragmentInterface comentFragmentInterfaceListener;
 
 
     @Override
@@ -231,6 +234,21 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
        loadProfile();
     }
 
+
+
+    //comment sent refesh
+    @Override
+    public void onCommentSent(int data) {
+
+        comentFragmentInterfaceListener.sendRefresh(data);
+    }
+
+    public interface CommentFragmentInterface{
+        void sendRefresh(int data);
+    }
+    public void setOnCommentListener(ProfileActivity.CommentFragmentInterface mComentFragmentInterface){
+        comentFragmentInterfaceListener=mComentFragmentInterface;
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.blog.controller.ui.profile;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -53,6 +54,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 public class EditProfileDialogFragment extends DialogFragment  {
 
@@ -73,6 +76,8 @@ public class EditProfileDialogFragment extends DialogFragment  {
     FetchJson mVolleyService;
 
     OnProfileDataPass dataPasser;
+    ProgressDialog progressDialog;
+
 
     @Override
     public void onAttach(Context context) {
@@ -91,6 +96,10 @@ public class EditProfileDialogFragment extends DialogFragment  {
 
        View view = inflater.inflate(R.layout.profile_edit, container,false);
 
+
+        progressDialog=new ProgressDialog(getContext(),R.style.AlertDialogCustom);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle(R.string.wait);
 
        updateProfileUrl=baseUrl.getUrl(baseUrl.getUpdateProfile());
 
@@ -127,6 +136,8 @@ public class EditProfileDialogFragment extends DialogFragment  {
             @Override
             public void onClick(View view) {
                 if(nameCheck){
+                    save.setClickable(false);
+
                     name=userName.getText().toString();
                     if(imageFile !=null){
                         if (checkPermission())
@@ -139,6 +150,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
 
                     }
                     else{
+                        progressDialog.show();
                         updateNoImg(userId,name);
                     }
 
@@ -178,7 +190,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
 
         if(window == null) return;
         WindowManager.LayoutParams params = window.getAttributes();
-        params.width = (int)(getResources().getDisplayMetrics().widthPixels);
+        params.width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
 //        params.height = (int)(getResources().getDisplayMetrics().heightPixels*0.50);
         window.setAttributes(params);
         window.getDecorView().setOnTouchListener(new SwipeDismissTouchListener(window.getDecorView(), null, new SwipeDismissTouchListener.DismissCallbacks() {
@@ -264,7 +276,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
         ll.addView(progressBar);
         ll.addView(tvText);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialogCustom);
         builder.setCancelable(false);
         builder.setView(ll);
 
@@ -311,18 +323,27 @@ public class EditProfileDialogFragment extends DialogFragment  {
 //                        mProgressDialog.dismiss();
                         dialog.dismiss();
 
-
+                        save.setClickable(true);
+                        progressDialog.dismiss();
                         Log.d(TAG, "onCompleted: "+result);
 //
                         if (e != null) {
                             Log.e(TAG, "error/ "+e );
-                            Toast.makeText(getContext(), R.string.upload_failed, Toast.LENGTH_LONG).show();
+                            try {
+                                Toast.makeText(getContext(), R.string.upload_failed, Toast.LENGTH_LONG).show();
+                            }catch (Exception e1){
+                                Log.e(TAG, "notifyError: ",e1 );
+                            }
                             return;
                         }
                         passData(1);
                         dismiss();
-                        Toast.makeText(getContext(), R.string.upload_complete, Toast.LENGTH_LONG).show();
-                       //
+                        try {
+                            Toast.makeText(getContext(), R.string.upload_complete, Toast.LENGTH_LONG).show();
+                        }catch (Exception e1){
+                            Log.e(TAG, "notifyError: ",e1 );
+                        }
+                        //
                     }
                 });
 
@@ -347,6 +368,9 @@ public class EditProfileDialogFragment extends DialogFragment  {
             public void notifySuccess(String requestType,final JSONObject response) {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post" + response);
+
+                save.setClickable(true);
+                progressDialog.dismiss();
                 passData(1);
                 dismiss();
 
@@ -367,6 +391,13 @@ public class EditProfileDialogFragment extends DialogFragment  {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post" + error);
 
+                save.setClickable(true);
+                progressDialog.dismiss();
+
+                try {
+                    Toast.makeText(getApplicationContext(),R.string.no_connection,Toast.LENGTH_LONG).show();
+
+                }catch (Exception e){}
 //                Toast.makeText(getApplicationContext(),"hm"+error,Toast.LENGTH_LONG).show();
 
 
@@ -386,7 +417,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
 
     private void requestPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(getContext(), "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(), "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
         } else {
             ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
         }

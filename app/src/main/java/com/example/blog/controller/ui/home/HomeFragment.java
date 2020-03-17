@@ -379,7 +379,11 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
             }
             else {TOTAL_PAGES=response.getInt("last_page");}
             if(TOTAL_PAGES==0){
-                Toast.makeText(getContext(),R.string.no_posts,Toast.LENGTH_SHORT).show();
+                try {
+                    Toast.makeText(getContext(),R.string.no_posts,Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Log.e(TAG, "notifyError: ",e );
+                }
             }
 
            JSONArray data=response.getJSONArray("data");

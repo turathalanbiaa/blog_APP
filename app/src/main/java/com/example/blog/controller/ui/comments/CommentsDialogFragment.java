@@ -62,8 +62,8 @@ public class CommentsDialogFragment extends DialogFragment  {
 
         if(window == null) return;
         WindowManager.LayoutParams params = window.getAttributes();
-        params.width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
-        params.height = (int)(getResources().getDisplayMetrics().heightPixels*0.90);
+        params.width = (int)(getResources().getDisplayMetrics().widthPixels*0.75);
+        params.height = (int)(getResources().getDisplayMetrics().heightPixels*0.75);
         window.setAttributes(params);
         window.getDecorView().setOnTouchListener(new SwipeDismissTouchListener(window.getDecorView(), null, new SwipeDismissTouchListener.DismissCallbacks() {
             @Override

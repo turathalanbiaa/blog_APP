@@ -143,9 +143,14 @@ public class CommentBarFragment extends Fragment {
                 buttonActive();
                 comment.setText("");
                 comment.clearFocus();
-                Toast.makeText(getContext(),R.string.comment_sent,Toast.LENGTH_LONG).show();
+                try {
+                    Toast.makeText(getContext(),R.string.comment_sent,Toast.LENGTH_LONG).show();
 
-              if(getActivity().getLocalClassName().equalsIgnoreCase("MainActivity"))
+                }catch (Exception e){
+                    Log.e(TAG, "notifyError: ",e );
+                }
+
+//              if(getActivity().getLocalClassName().equalsIgnoreCase("MainActivity"))
                 passData(1);
 
 
@@ -172,7 +177,12 @@ public class CommentBarFragment extends Fragment {
                 }
 
                 buttonActive();
-                Toast.makeText(getContext(),R.string.comment_not_sent,Toast.LENGTH_LONG).show();
+                try {
+                    Toast.makeText(getContext(),R.string.comment_not_sent,Toast.LENGTH_LONG).show();
+
+                }catch (Exception e){
+                    Log.e(TAG, "notifyError: ",e );
+                }
 
 
 

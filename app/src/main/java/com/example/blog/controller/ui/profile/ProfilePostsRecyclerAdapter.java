@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -123,8 +124,12 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 }
 
                 if(myProfile)
-                    if (posts.getStatus() ==0)
+                    if (posts.getStatus() ==0) {
                         postVH.edit.setVisibility(View.VISIBLE);
+                       postVH.notApproved.setVisibility(View.VISIBLE);
+
+
+                    }
 
                 break;
             case LOADING:
@@ -220,6 +225,7 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         LinearLayout contentll,catLL;
         Button catBtn;
         TextView delete,edit;
+        ImageButton notApproved;
 
         public PostVH(View itemView) {
             super(itemView);
@@ -237,6 +243,7 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
 //            catLL=itemView.findViewById(R.id.post_catLL);
 
+            notApproved=itemView.findViewById(R.id.notApproved);
             catBtn=itemView.findViewById(R.id.catBtn);
             catId=itemView.findViewById(R.id.cat_Id);
 //
@@ -255,6 +262,13 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
             }
 
+
+            notApproved.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    notApproved.performLongClick();
+                }
+            });
 //
 
 

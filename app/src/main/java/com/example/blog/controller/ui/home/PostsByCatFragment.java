@@ -350,7 +350,11 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
             }
             else {TOTAL_PAGES=response.getInt("last_page");}
             if(TOTAL_PAGES==0){
-                Toast.makeText(getContext(),R.string.no_posts,Toast.LENGTH_SHORT).show();
+                try {
+                    Toast.makeText(getContext(),R.string.no_posts,Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Log.e(TAG, "notifyError: ",e );
+                }
             }
 
            JSONArray data=response.getJSONArray("data");
@@ -387,6 +391,8 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
                 JSONObject user=obj.getJSONObject("user");
                 String userName=user.getString("name");
                 String profilePic=user.getString("picture");
+               String commentsCount=obj.getString("cmd_count");
+
 
                if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
                    profilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
@@ -398,12 +404,12 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
 
                 //get username and profile pic
                post.setUsername(userName);
-//               profilePic=baseUrl.getImagePath(profilePic);
 
                //database image path is outdated
                post.setProfilePic(profilePic);
                //get cat name
                post.setCategory_name(catName);
+               post.setCommentsCount(commentsCount);
 
                 postsList.add(post);
             }

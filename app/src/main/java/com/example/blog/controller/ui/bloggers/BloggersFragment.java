@@ -376,9 +376,9 @@ public class BloggersFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         }catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getContext(),
-                    "Error: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(),
+//                    "Error: " + e.getMessage(),
+//                    Toast.LENGTH_LONG).show();
         }
 
         return list;

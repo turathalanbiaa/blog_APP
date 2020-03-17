@@ -201,7 +201,11 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
 
                 if(requestType.equals("delete")){
                     adapter.remove(adapter.getItem(deletedItemPosition));
-                    Toast.makeText(getContext(),R.string.delete_complete,Toast.LENGTH_LONG).show();
+                    try {
+                        Toast.makeText(getContext(),R.string.delete_complete,Toast.LENGTH_LONG).show();
+                    }catch (Exception e1){
+                        Log.e(TAG, "notifyError: ",e1 );
+                    }
                 }
                 else {
 
@@ -243,7 +247,12 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
                 Log.d(TAG, "notifyError: "+error);
 //                Toast.makeText(getContext(),""+error,Toast.LENGTH_LONG).show();
                 if(requestType.equals("delete")){
-                    Toast.makeText(getContext(),R.string.delete_failed,Toast.LENGTH_LONG).show();
+                    try {
+                        Toast.makeText(getContext(),R.string.delete_failed,Toast.LENGTH_LONG).show();
+                    }catch (Exception e1){
+                        Log.e(TAG, "notifyError: ",e1 );
+                    }
+
                 }
                 else {
 
@@ -274,7 +283,11 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
             }
             else {TOTAL_PAGES=response.getInt("last_page");}
             if(TOTAL_PAGES==0){
-                Toast.makeText(getContext(),R.string.no_posts,Toast.LENGTH_SHORT).show();
+                try {
+                    Toast.makeText(getContext(),R.string.no_posts,Toast.LENGTH_SHORT).show();
+                }catch (Exception e1){
+                    Log.e(TAG, "notifyError: ",e1 );
+                }
             }
 
             JSONArray data=response.getJSONArray("data");

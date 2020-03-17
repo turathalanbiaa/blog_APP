@@ -42,7 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CommentsFragment extends Fragment implements CommentsRecyclerViewAdapter.ClickListenerInterface,MainActivity.CommentFragmentInterface {
+public class CommentsFragment extends Fragment implements CommentsRecyclerViewAdapter.ClickListenerInterface,MainActivity.CommentFragmentInterface ,ProfileActivity.CommentFragmentInterface{
 
 
     RecyclerView recyclerView;
@@ -80,6 +80,9 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
 
        if(getActivity().getLocalClassName().equalsIgnoreCase("MainActivity"))
         ((MainActivity) getActivity()).setOnCommentListener(this);
+       //profile act
+       else
+           ((ProfileActivity) getActivity()).setOnCommentListener(this);
 
         int postId;
 
@@ -206,8 +209,13 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
 //                Toast.makeText(getContext(),"//"+response,Toast.LENGTH_LONG).show();
                 if(requestType.equals("delete")){
                     adapter.remove(adapter.getItem(deletedItemPosition));
-                    Toast.makeText(getContext(),R.string.delete_complete,Toast.LENGTH_LONG).show();
-                }
+                    try {
+                        Toast.makeText(getContext(),R.string.delete_complete,Toast.LENGTH_LONG).show();
+
+                    }catch (Exception e){
+                        Log.e(TAG, "notifyError: ",e );
+                    }
+                    }
                 else {
                     adapter.removeLoadingFooter();
                     isLoading = false;
@@ -236,7 +244,11 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
                 Log.d(TAG, "Volley JSON post" + error);
 
                if(requestType.equals("delete")){
-                    Toast.makeText(getContext(),R.string.delete_failed,Toast.LENGTH_LONG).show();
+                   try {
+                       Toast.makeText(getContext(), R.string.delete_failed, Toast.LENGTH_LONG).show();
+                   }catch (Exception e){
+                       Log.e(TAG, "notifyError: ",e );
+                   }
                 }
                 else {
                    adapter.removeLoadingFooter();
@@ -262,9 +274,13 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
             }
             else {TOTAL_PAGES=response.getInt("last_page");}
 
-//            if(TOTAL_PAGES==0){
-//                Toast.makeText(getContext(),R.string.no_comments,Toast.LENGTH_SHORT).show();
-//            }
+            if(TOTAL_PAGES==0){
+                try {
+                    Toast.makeText(getContext(),R.string.no_comments,Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    Log.e(TAG, "notifyError: ",e );
+                }
+            }
 
 
             JSONArray data=response.getJSONArray("data");
@@ -322,7 +338,7 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
                 }
             };
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialogCustom);
             builder.setMessage(R.string.delete).setPositiveButton(R.string.yes, dialogClickListener)
                     .setNegativeButton(R.string.no, dialogClickListener).show();
         }
