@@ -89,6 +89,7 @@
                     android:src="@drawable/ic_new_releases_black_24dp"
                     android:layout_gravity="right"
                     android:tooltipText="@string/notApproved"
+                    android:visibility="gone"
 
                     />
 
