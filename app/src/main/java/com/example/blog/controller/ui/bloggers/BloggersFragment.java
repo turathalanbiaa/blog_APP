@@ -360,8 +360,8 @@ public class BloggersFragment extends Fragment implements SwipeRefreshLayout.OnR
                 user.setId(id);
                 user.setName(name);
                 user.setPoints(points);
-                if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                    profilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+                if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
+                    profilePic=baseUrl.getDefaultProfilePic();
                 }
 
                 user.setPicture(profilePic);

@@ -177,8 +177,8 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
 //                Toast.makeText(getContext(),"//"+response,Toast.LENGTH_LONG).show();
                if(parsJson(response)){
                    name.setText(userName);
-                   if(imgStr == null || imgStr.equals("") || imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                       imgStr="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+                   if(imgStr == null || imgStr.equals("") ||imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||imgStr.equals("student.png")){
+                       imgStr=baseUrl.getDefaultProfilePic();
                    }
                      Picasso.with(getApplicationContext()).load(imgStr).fit().into(profilePic);
 

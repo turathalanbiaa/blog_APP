@@ -86,20 +86,7 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 
 
        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//
-                if(!loggedOut || actLoggedIn){
-                Intent intent =new Intent(getApplicationContext(), WritePostActivity.class);
-                startActivity(intent);
-            }
-                else {
-                    Toast.makeText(getApplicationContext(),R.string.must_login_to_post,Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -128,6 +115,20 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 
 
         }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//
+                if(!loggedOut || actLoggedIn){
+                    Intent intent =new Intent(getApplicationContext(), WritePostActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    navController.navigate(R.id.nav_login);
+                }
+
+            }
+        });
 
 
 
@@ -150,10 +151,10 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
             if(img != null)
             Picasso.with(MainActivity.this).load(img).into(profilePic);
 
-            nameTextView.setText(prefs.getString("user_name","guest"));
+            nameTextView.setText(prefs.getString("user_name","ضيف"));
         }
         else{
-            nameTextView.setText("guest");
+            nameTextView.setText("ضيف");
         }
 
 

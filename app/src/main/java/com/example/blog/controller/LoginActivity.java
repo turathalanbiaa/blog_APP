@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     FetchJson mVolleyService;
     ProgressDialog progress;
 
+    CheckBox checkbox_turath_login;
+    boolean turath=false;
     String fbId,fbName,fbPic;
 
     @Override
@@ -69,6 +73,15 @@ public class LoginActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
 
 
+        checkbox_turath_login=findViewById(R.id.checkbox_turath_login);
+        checkbox_turath_login.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                turath=b;
+                Log.d(TAG, "onCheckedChanged: "+turath);
+            }
+        });
+
         Button login=findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                 //make api call
 //                hideKeyboard(LoginActivity.this);
                 progress.show();
-                makeApiCall(username.getText().toString(), password.getText().toString());
-
+                 makeApiCall(username.getText().toString(), password.getText().toString(),turath);
+//
             }
         });
 
@@ -153,15 +166,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void makeApiCall(String email, String password) {
+    private void makeApiCall(String email, String password, boolean turath) {
         String url=baseUrl.getUrl(baseUrl.getLogin());
+        String reqType="login";
         initVolleyCallback();
         mVolleyService =new FetchJson(mResultCallback,getApplicationContext());
         Map<String,String> params=new HashMap<>();
         params.put("email",email);
         params.put("password",password);
+        if(turath){
+            params.put("db","1");
+            reqType="turath";
+        }
         JSONObject sendJson=new JSONObject(params);
-        mVolleyService.postDataVolley("GETCALL",url,sendJson);
+        mVolleyService.postDataVolley(reqType,url,sendJson);
 //
     }
     void initVolleyCallback(){
@@ -178,6 +196,9 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+//                else if(requestType.equals("turath")){
+//                    makeApiCall(username.getText().toString(), password.getText().toString(),false);
+//                }
                 else {
                     if (parsJson(response)) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -222,17 +243,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
             String name = response.getString("name");
-           String imgStr = response.getString("picture");
+           String profilePic = response.getString("picture");
            String id = response.getString("id");
-            if(imgStr == null || imgStr.equals("") || imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                imgStr="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+
+            if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
+                profilePic=baseUrl.getDefaultProfilePic();
             }
 
             SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("user_id",id);
             editor.putString("user_name",name);
-            editor.putString("profile_pic",imgStr);
+            editor.putString("profile_pic",profilePic);
             editor.apply();
            success=true;
 

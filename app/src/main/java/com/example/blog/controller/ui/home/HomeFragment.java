@@ -428,8 +428,8 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
                 String userName=user.getString("name");
                 String profilePic=user.getString("picture");
 
-               if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                   profilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+               if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
+                   profilePic=baseUrl.getDefaultProfilePic();
                }
 
 
