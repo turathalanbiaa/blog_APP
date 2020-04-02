@@ -201,7 +201,11 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
             public void notifyError(String requestType, VolleyError error) {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post" + error);
-                loadProfile();
+                int c=10;
+                if(c>0) {
+                    loadProfile();
+                    c--;
+                }
             }
         };
     }
