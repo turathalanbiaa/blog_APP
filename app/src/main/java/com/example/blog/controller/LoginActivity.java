@@ -32,6 +32,7 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.squareup.picasso.Picasso;
@@ -152,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveFacebookLogin(String id, String name, String img, String email) {
-        Log.d(TAG, "saveFacebookLogin: "+id);
+        Log.d(TAG, "saveFacebookLogin: "+email);
         String url=baseUrl.getUrl(baseUrl.getFbLoginInDb());
         initVolleyCallback();
         mVolleyService =new FetchJson(mResultCallback,getApplicationContext());
@@ -191,11 +192,24 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "Volley JSON post" + response);
 //                Toast.makeText(getContext(),"//"+response,Toast.LENGTH_LONG).show();
                 progress.dismiss();
-
+                String msg=null;
+                try {
+                    msg = response.getString("message");
+                }catch (Exception e){};
                 if(requestType.equals("fb")){
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
+                        if (msg.equals("email exists"))
+                        {
+                            LoginManager.getInstance().logOut();
+                            Toast.makeText(getApplicationContext(),R.string.email_taken,Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+
                 }
 //                else if(requestType.equals("turath")){
 //                    makeApiCall(username.getText().toString(), password.getText().toString(),false);

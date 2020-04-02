@@ -27,6 +27,7 @@ public class URLs {
 
     private String defaultProfilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
     private String imagePath="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/";
+
 //    private String imagePath="http://192.168.9.110/blog/public/images/";
 
 
