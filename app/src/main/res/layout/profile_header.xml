@@ -30,7 +30,7 @@
 
             android:layout_margin="5dp"
 
-            app:cardCornerRadius="23dp"
+            app:cardCornerRadius="18dp"
 
             >
 
