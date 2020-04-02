@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void saveFacebookLogin(String id, String name, String img) {
+    private void saveFacebookLogin(String id, String name, String img, String email) {
         Log.d(TAG, "saveFacebookLogin: "+id);
         String url=baseUrl.getUrl(baseUrl.getFbLoginInDb());
         initVolleyCallback();
@@ -160,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
         params.put("id",id);
         params.put("name",name);
         params.put("picture",img);
+        params.put("email",email);
         JSONObject sendJson=new JSONObject(params);
         mVolleyService.postDataVolley("fb",url,sendJson);
 
@@ -291,7 +292,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            Toast.makeText(getApplicationContext(),first_name+" "+email+" , "+id,Toast.LENGTH_LONG).show();
 //
 //
-                                saveFacebookLogin(id,first_name+" "+last_name,image_url);
+                                saveFacebookLogin(id,first_name+" "+last_name,image_url,email);
 
 
                             } catch (JSONException e) {
