@@ -203,8 +203,19 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post" + response);
 //                Toast.makeText(getApplicationContext(),"//"+response,Toast.LENGTH_LONG).show();
+                String msg=null;
+                try{
+                    msg=response.getString("message");
+                }catch (Exception e){}
                 progress.dismiss();
-                if(parsJson(response)){
+
+                if(msg != null && msg.equals("email exists"))
+                {
+                    username.setError(getString(R.string.email_taken));
+                    Toast.makeText(getApplicationContext(),R.string.email_taken,Toast.LENGTH_LONG).show();
+
+                }
+                else if(parsJson(response)){
                     LoginManager.getInstance().logOut();
                     Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
