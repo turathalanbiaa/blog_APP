@@ -257,7 +257,7 @@ public class RegisterActivity extends AppCompatActivity {
             String imgStr="";
             String id = response.getString("id");
             if(imgStr == null || imgStr.equals("") || imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                imgStr="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+                imgStr=baseUrl.getDefaultProfilePic();
             }
 
             Log.d(TAG, "parsJson: "+success);
