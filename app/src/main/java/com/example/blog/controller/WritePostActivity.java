@@ -541,7 +541,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
                     })
 
                     .setTimeout(60 * 60 * 1000)
-                    .setMultipartFile("input_img", "file", imageFile)
+                    .setMultipartFile("image", "file", imageFile)
                     .setMultipartParameter("user_id", userId)
                     .setMultipartParameter("title", title)
                     .setMultipartParameter("content", content)

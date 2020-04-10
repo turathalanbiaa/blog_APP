@@ -312,7 +312,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
                 })
 
                 .setTimeout(60 * 60 * 1000)
-                .setMultipartFile("picture", "file", imageFile)
+                .setMultipartFile("image", "file", imageFile)
                 .setMultipartParameter("id",userId)
                 .setMultipartParameter("name",name)
                 .asJsonObject()

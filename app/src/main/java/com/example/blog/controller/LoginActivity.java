@@ -192,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "Volley JSON post" + response);
 //                Toast.makeText(getContext(),"//"+response,Toast.LENGTH_LONG).show();
                 progress.dismiss();
-                String msg=null;
+                String msg="";
                 try {
                     msg = response.getString("message");
                 }catch (Exception e){};
