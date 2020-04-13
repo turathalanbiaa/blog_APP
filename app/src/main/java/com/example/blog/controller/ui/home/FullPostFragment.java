@@ -62,23 +62,28 @@ public class FullPostFragment extends Fragment {
 
         String time= timeago.covertTimeToText(post.getCreated_at());
         created_at.setText(time);
-        Picasso.with(getContext()).
-                load(post.getProfilePic()).into(profilePic);
 
+
+        if(post.getProfilePic().equals("default")) {
+            Picasso.with(getContext()).
+                    load(R.drawable.default_profile_pic).into(profilePic);
+        }
+        else {
+            Picasso.with(getContext()).
+                    load(post.getProfilePic()).into(profilePic);
+
+        }
         catBtn.setText(post.getCategory_name());
 
         //name
         userName.setText(post.getUsername());
 
-        //background pic
-//        Picasso.with(getContext()).
-//                load(R.drawable.aqlamdefault).fit().centerCrop().into( profileBackground);
-
 
 
 
         final String img=post.getImage();
-        if(img !=null && !img.equals("")) {
+
+            if(img !=null && !img.equals("")&& !img.equals("aqlam-default.jpg")) {
             postPic.setVisibility(View.VISIBLE);
             postPic.getLayoutParams().height=750;
             Picasso.with(getContext()).load(img).fit().centerCrop().into(postPic);
