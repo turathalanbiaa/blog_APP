@@ -116,12 +116,16 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 String img = posts.getImage();
 
 
-                if (img != null && !img.equals("")) {
+                if (img != null && !img.equals("") && !img.equals("aqlam-default.jpg")) {
 
                     postVH.postPic.setVisibility(View.VISIBLE);
                     Picasso.with( postVH.postPic.getContext()).load(img).fit().centerCrop().into( postVH.postPic);
 
                 }
+//                else {
+//                    postVH.postPic.setVisibility(View.VISIBLE);
+//                    Picasso.with(postVH.postPic.getContext()).load(R.drawable.aqlamdefault).fit().centerCrop().into(postVH.postPic);
+//                }
 
                 if(myProfile)
                     if (posts.getStatus() ==0) {

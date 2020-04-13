@@ -178,8 +178,10 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
                if(parsJson(response)){
                    name.setText(userName);
                    if(imgStr == null || imgStr.equals("") ||imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||imgStr.equals("student.png")){
-                       imgStr=baseUrl.getDefaultProfilePic();
+//                       imgStr=baseUrl.getDefaultProfilePic();
+                       Picasso.with(getApplicationContext()).load(R.drawable.default_profile_pic).fit().into(profilePic);
                    }
+                   else
                      Picasso.with(getApplicationContext()).load(imgStr).fit().into(profilePic);
 
 

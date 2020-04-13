@@ -85,9 +85,15 @@ public class BloggersRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 PostVH postVH = (PostVH) holder;
 
                 //profile pic, get from user
-                Picasso.with( postVH.profilePic.getContext()).
-                        load(users.getPicture()).into( postVH.profilePic);
+                if(users.getPicture().equals("default")){
+                    Picasso.with(postVH.profilePic.getContext()).
+                            load(R.drawable.default_profile_pic).into(postVH.profilePic);
+                }
+                else {
+                    Picasso.with(postVH.profilePic.getContext()).
+                            load(users.getPicture()).into(postVH.profilePic);
 
+                }
                 //name
                 postVH.userName.setText(users.getName());
 

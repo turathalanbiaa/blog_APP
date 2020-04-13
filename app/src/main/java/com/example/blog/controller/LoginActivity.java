@@ -261,9 +261,9 @@ public class LoginActivity extends AppCompatActivity {
            String profilePic = response.getString("picture");
            String id = response.getString("id");
 
-            if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
-                profilePic=baseUrl.getDefaultProfilePic();
-            }
+//            if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
+//                profilePic=baseUrl.getDefaultProfilePic();
+//            }
 
             SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();

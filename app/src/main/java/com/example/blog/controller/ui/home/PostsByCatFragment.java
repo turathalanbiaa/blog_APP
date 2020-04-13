@@ -376,6 +376,7 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
                if(image != null && !image.equals(""))
                    image=baseUrl.getImagePath()+image;
 
+
                Posts post=new Posts();
                 post.setId(id);
                 post.setImage(image);
@@ -395,7 +396,7 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
 
 
                if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                   profilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+                   profilePic="default";
                }
 
 

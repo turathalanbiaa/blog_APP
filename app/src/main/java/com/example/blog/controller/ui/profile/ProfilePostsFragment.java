@@ -80,6 +80,8 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
                              ViewGroup container, Bundle savedInstanceState) {
          View root = inflater.inflate(R.layout.fragment_profile_posts, container, false);
 //
+
+
         firstPageUrl=baseUrl.getUrl(baseUrl.getPostByUserId());
         incViewUrl=baseUrl.getIncViewsUrl();
         deletePostUrl=baseUrl.getUrl(baseUrl.getDeletePost());
@@ -163,6 +165,7 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
 
         return root;
     }
+
     private void refresh() {
         loading.setVisibility(View.VISIBLE);
         retry.setVisibility(View.GONE);
@@ -194,6 +197,7 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
 
     void initVolleyCallback(){
         mResultCallback = new IResult() {
+
             @Override
             public void notifySuccess(String requestType,final JSONObject response) {
                 Log.d(TAG, "Volley requester " + requestType);
@@ -271,7 +275,7 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
         ArrayList<Posts> postsList=new ArrayList<>();
         try {
 
-
+            if (isAdded())
             postsNum.setText(getResources().getString(R.string.total_posts )+" : "+response.getString("total"));
 
 
@@ -307,7 +311,7 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
                 String userId=obj.getString("user_id");
                 String commentsCount=obj.getString("cmd_count");
 
-                if(image != null && !image.equals(""))
+                if(image != null && !image.equals("") && !image.equals("aqlam-default.jpg"))
                     image=baseUrl.getImagePath()+image;
 
                 Posts post=new Posts();

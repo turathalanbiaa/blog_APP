@@ -361,7 +361,8 @@ public class BloggersFragment extends Fragment implements SwipeRefreshLayout.OnR
                 user.setName(name);
                 user.setPoints(points);
                 if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
-                    profilePic=baseUrl.getDefaultProfilePic();
+//                    profilePic=baseUrl.getDefaultProfilePic();
+                    profilePic="default";
                 }
 
                 user.setPicture(profilePic);

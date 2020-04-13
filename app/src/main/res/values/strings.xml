@@ -56,8 +56,8 @@
 
     //loading errors
     <string name="no_connection">لا يوجد اتصال...</string>
-    <string name="error">error</string>
-    <string name="retry">retry</string>
+    <string name="error">خطا</string>
+    <string name="retry">اعادة المحاوله</string>
 
     //
     <string name="notApproved">لم تتم الموافقة بعد</string>

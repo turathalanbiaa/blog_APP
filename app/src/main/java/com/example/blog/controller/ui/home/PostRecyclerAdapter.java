@@ -91,9 +91,15 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 //profile pic, get from user
                 String profilePic=posts.getProfilePic();
-                if (profilePic != null && !profilePic.equals("")) {
-                Picasso.with( postVH.profilePic.getContext()).
-                        load(profilePic).into( postVH.profilePic);}
+                if(profilePic.equals("default")){
+                    Picasso.with(postVH.profilePic.getContext()).
+                            load(R.drawable.default_profile_pic).into(postVH.profilePic);
+                }
+                else {
+                    Picasso.with(postVH.profilePic.getContext()).
+                            load(profilePic).into(postVH.profilePic);
+
+                }
 
                 //name
                 postVH.userName.setText(posts.getUsername());
@@ -125,11 +131,15 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 String img = posts.getImage();
 
 
-                if (img != null && !img.equals("")) {
+                if (img != null && !img.equals("") && !img.equals("aqlam-default.jpg")) {
 
                     postVH.postPic.setVisibility(View.VISIBLE);
                     Picasso.with( postVH.postPic.getContext()).load(img).fit().centerCrop().into( postVH.postPic);
 
+                }
+                else {
+                    postVH.postPic.setVisibility(View.VISIBLE);
+                    Picasso.with(postVH.postPic.getContext()).load(R.drawable.aqlamdefault).fit().centerCrop().into(postVH.postPic);
                 }
                 break;
             case LOADING:

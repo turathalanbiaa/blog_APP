@@ -256,9 +256,9 @@ public class RegisterActivity extends AppCompatActivity {
 //            String imgStr = response.getString("picture");
             String imgStr="";
             String id = response.getString("id");
-            if(imgStr == null || imgStr.equals("") || imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
-                imgStr=baseUrl.getDefaultProfilePic();
-            }
+//            if(imgStr == null || imgStr.equals("") || imgStr.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")){
+//                imgStr=baseUrl.getDefaultProfilePic();
+//            }
 
             Log.d(TAG, "parsJson: "+success);
             SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);

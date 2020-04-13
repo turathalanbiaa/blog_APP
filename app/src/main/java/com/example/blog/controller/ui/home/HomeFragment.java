@@ -408,7 +408,7 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
                String userId=obj.getString("user_id");
                String commentsCount=obj.getString("cmd_count");
 
-               if(image != null && !image.equals(""))
+               if(image != null && !image.equals("") && !image.equals("aqlam-default.jpg"))
                    image=baseUrl.getImagePath()+image;
 
                Posts post=new Posts();
@@ -429,7 +429,8 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
                 String profilePic=user.getString("picture");
 
                if(profilePic == null || profilePic.equals("") ||profilePic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png")||profilePic.equals("student.png")){
-                   profilePic=baseUrl.getDefaultProfilePic();
+//                   profilePic=baseUrl.getDefaultProfilePic();
+                   profilePic="default";
                }
 
 
