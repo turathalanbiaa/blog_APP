@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
         Toolbar toolbar = findViewById(R.id.toolbar);
 
 
+        //create channels
+        NotificationUtils nu=new NotificationUtils(getApplicationContext());
+        nu.createChannels();
         //firebase service
         Intent serviceIntent = new Intent(this, FireBaseService.class);
         startService(serviceIntent);

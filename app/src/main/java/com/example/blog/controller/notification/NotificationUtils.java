@@ -15,7 +15,7 @@ public class NotificationUtils extends ContextWrapper {
     public static final String CHANNEL1_ID = "ch1";
     public static final String CHANNEL1_NAME = "CHANNEL 1";
 
-    public static final String CHANNEL2_ID = "ch_2";
+    public static final String CHANNEL2_ID = "ch2";
     public static final String CHANNEL2_NAME = "CHANNEL 2";
 
     public NotificationUtils(Context base) {
