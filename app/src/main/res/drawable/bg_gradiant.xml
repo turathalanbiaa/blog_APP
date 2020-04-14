@@ -4,5 +4,6 @@
         android:startColor="@color/gradiant_begin"
         android:endColor="#fff"
         android:angle="-135" />
+
 </shape>
 <!--    2f763a-->

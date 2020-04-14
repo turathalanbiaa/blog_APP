@@ -5,8 +5,8 @@
     android:id="@+id/commentsLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_round_corner"
-    app:layout_constraintCircleRadius="533dp"
+
+    app:layout_constraintCircleRadius="833dp"
     android:orientation="vertical"
 
     >
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="التعليقات:"
             android:fontFamily="@font/myfont"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textDirection="rtl"
             android:layout_gravity="right"
 
@@ -46,8 +46,15 @@
 
 
     </androidx.recyclerview.widget.RecyclerView>
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="5dp"
+        android:background="?android:attr/listDivider" />
 
-<!--    <include-->
+
+    <!--    <include-->
 <!--        layout="@layout/comment_bar"-->
 <!--        />-->
     <FrameLayout

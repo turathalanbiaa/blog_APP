@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
@@ -14,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="6dp"
         android:textDirection="rtl">
 
         <TextView
@@ -136,7 +138,7 @@
                 android:maxLines="3"
                 android:text="فصبرٌ جميل لن تستطيع الأمّة أنْ تحقّق نهضة شاملة في حياتها ما لم تغيّر مفهومها عن الصبر، وتؤمن بأنّ الصبر هو الصبر على أداء الواجب وتحمّل المكاره في سبيل مقاومة الظلم والطغيان والترفّع عن الهموم الصغيرة من أج"
                 android:fontFamily="@font/myfont"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 />
 
             <TextView

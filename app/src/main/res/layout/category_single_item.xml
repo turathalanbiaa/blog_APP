@@ -14,7 +14,7 @@
         android:text="cat"
         android:textAlignment="center"
         android:background="@drawable/bg_edittext"
-        android:textSize="26sp"
+        android:textSize="22sp"
         android:padding="5dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
