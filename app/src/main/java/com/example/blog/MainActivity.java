@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
     ImageView profilePic;
     TextView nameTextView,emailTextView;
     FloatingActionButton fab;
-    String myId,myName;
-    Boolean actLoggedIn=false;
+    public String fbId="";
+    public Boolean actLoggedIn=false;
     SharedPreferences prefs;
-    boolean loggedOut;
+   public boolean loggedOut;
 
     private FragmentInterface fragmentInterfaceListener;
     private CommentFragmentInterface comentFragmentInterfaceListener;
@@ -207,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 //                            Toast.makeText(getApplicationContext(),first_name+" "+email+" , "+id,Toast.LENGTH_LONG).show();
 
                             nameTextView.setText(first_name +" "+last_name);
+                            fbId=id;
 //                            emailTextView.setText(email);
 //                            txtUsername.setText("First Name: " + first_name + "\nLast Name: " + last_name);
 //                            txtEmail.setText(email);

@@ -385,9 +385,13 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
         if (postDetails.getMaxLines() == 3) {
             postDetails.setMaxLines(1000);
             seeMore.setVisibility(View.GONE);
-            //incViews if post hass been approved
-            if(adapter.getItem(position).getStatus() == 1)
-            updateViews(incViewUrl,adapter.getItem(position).getId());
+            if(((ProfileActivity)getActivity()).myProfile)
+            {
+
+            }
+            else
+                updateViews(incViewUrl,adapter.getItem(position).getId());
+
 
         } else {
             postDetails.setMaxLines(3);
@@ -412,11 +416,6 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
 
                 try {
 
-
-//                    Toast.makeText(getApplicationContext(),
-//                            " "+  response.getString("message"), Toast.LENGTH_LONG).show();
-//
-////
 
                 } catch (Exception e) {
                     e.printStackTrace();

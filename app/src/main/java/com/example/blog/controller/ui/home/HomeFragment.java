@@ -1,6 +1,8 @@
 package com.example.blog.controller.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -465,9 +467,22 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
     @Override
     public void onItemClick(View view, int position) {
 
-        //incViews if post hass been approved
-        if(adapter.getItem(position).getStatus() == 1)
-        updateViews(incViewUrl,adapter.getItem(position).getId());
+//        //incViews if post hass been approved
+//        if(adapter.getItem(position).getStatus() == 1)
+//        updateViews(incViewUrl,adapter.getItem(position).getId());
+
+        if( ((MainActivity)getActivity()).actLoggedIn  ||  !((MainActivity)getActivity()).loggedOut)
+        {
+            SharedPreferences prefs = getActivity().getSharedPreferences("profile", Activity.MODE_PRIVATE);
+            if(prefs.getString("user_id","").equals(adapter.getItem(position).getUser_id()) || ((MainActivity)getActivity()).fbId.equals(adapter.getItem(position).getUser_id())){
+
+            }
+            else
+                updateViews(incViewUrl,adapter.getItem(position).getId());
+
+        }
+        else
+            updateViews(incViewUrl,adapter.getItem(position).getId());
 
 
         Bundle bundle = new Bundle();
@@ -487,9 +502,20 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
                     if (postDetails.getMaxLines() == 3) {
                         postDetails.setMaxLines(1000);
                         seeMore.setVisibility(View.GONE);
-                        //incViews if post hass been approved
-                        if(adapter.getItem(position).getStatus() == 1)
-                        updateViews(incViewUrl,adapter.getItem(position).getId());
+
+                        if( ((MainActivity)getActivity()).actLoggedIn  ||  !((MainActivity)getActivity()).loggedOut)
+                        {
+                            SharedPreferences prefs = getActivity().getSharedPreferences("profile", Activity.MODE_PRIVATE);
+                            if(prefs.getString("user_id","").equals(adapter.getItem(position).getUser_id()) || ((MainActivity)getActivity()).fbId.equals(adapter.getItem(position).getUser_id())){
+
+                            }
+                            else
+                                updateViews(incViewUrl,adapter.getItem(position).getId());
+
+                        }
+                        else
+                            updateViews(incViewUrl,adapter.getItem(position).getId());
+
 
                     } else {
                         postDetails.setMaxLines(3);

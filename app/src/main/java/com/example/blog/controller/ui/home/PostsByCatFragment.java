@@ -1,6 +1,8 @@
 package com.example.blog.controller.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -373,7 +375,7 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
                int cat_id=obj.getInt("category_id");
                String userId=obj.getString("user_id");
 
-               if(image != null && !image.equals(""))
+               if(image != null && !image.equals("") && !image.equals("aqlam-default.jpg"))
                    image=baseUrl.getImagePath()+image;
 
 
@@ -434,7 +436,19 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
     @Override
     public void onItemClick(View view, int position) {
 
-        updateViews(incViewUrl,adapter.getItem(position).getId());
+        if( ((MainActivity)getActivity()).actLoggedIn  ||  !((MainActivity)getActivity()).loggedOut)
+        {
+            SharedPreferences prefs = getActivity().getSharedPreferences("profile", Activity.MODE_PRIVATE);
+            if(prefs.getString("user_id","").equals(adapter.getItem(position).getUser_id()) || ((MainActivity)getActivity()).fbId.equals(adapter.getItem(position).getUser_id())){
+
+            }
+            else
+                updateViews(incViewUrl,adapter.getItem(position).getId());
+
+        }
+        else
+            updateViews(incViewUrl,adapter.getItem(position).getId());
+
         Bundle bundle = new Bundle();
 
 //        bundle.putInt("post",adapter.getItem(position).getId());
@@ -453,7 +467,19 @@ public class PostsByCatFragment extends Fragment implements  SwipeRefreshLayout.
                         postDetails.setMaxLines(40);
                         seeMore.setVisibility(View.GONE);
                         //incViews
-                        updateViews(incViewUrl,adapter.getItem(position).getId());
+                        if( ((MainActivity)getActivity()).actLoggedIn  ||  !((MainActivity)getActivity()).loggedOut)
+                        {
+                            SharedPreferences prefs = getActivity().getSharedPreferences("profile", Activity.MODE_PRIVATE);
+                            if(prefs.getString("user_id","").equals(adapter.getItem(position).getUser_id()) || ((MainActivity)getActivity()).fbId.equals(adapter.getItem(position).getUser_id())){
+
+                            }
+                            else
+                                updateViews(incViewUrl,adapter.getItem(position).getId());
+
+                        }
+                        else
+                            updateViews(incViewUrl,adapter.getItem(position).getId());
+
                     } else {
                         postDetails.setMaxLines(3);
                         seeMore.setVisibility(View.VISIBLE);
