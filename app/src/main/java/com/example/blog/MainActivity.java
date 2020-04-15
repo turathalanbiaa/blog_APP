@@ -151,9 +151,12 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
 
             String img=prefs.getString("profile_pic",null);
-            if(img != null)
-            Picasso.with(MainActivity.this).load(img).into(profilePic);
-
+            if(img != null && !img.equals("")) {
+                if (img.equals("default"))
+                    Picasso.with(MainActivity.this).load(R.drawable.default_profile_pic).into(profilePic);
+                else
+                    Picasso.with(MainActivity.this).load(img).into(profilePic);
+            }
             nameTextView.setText(prefs.getString("user_name","ضيف"));
         }
         else{
@@ -170,7 +173,24 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 
         }
 
-
+//        FirebaseInstanceId.getInstance().getInstanceId()
+//                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w("TAG", "getInstanceId failed", task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new Instance ID token
+//                        String token = task.getResult().getToken();
+//
+//                        // Log and toast
+////                        String msg = getString(R.string.msg_token_fmt, token);
+//                        Log.d("TAG", token);
+////                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
 //
     }
@@ -227,6 +247,8 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 
 
     }
+
+
     //go to my profile
     View.OnClickListener myProfileClickListener = new View.OnClickListener() {
         @Override

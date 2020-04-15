@@ -150,7 +150,8 @@ public class CommentBarFragment extends Fragment {
                     Log.e(TAG, "notifyError: ",e );
                 }
 
-//              if(getActivity().getLocalClassName().equalsIgnoreCase("MainActivity"))
+
+              if(getActivity().getClass().getSimpleName().equalsIgnoreCase("MainActivity"))
                 passData(1);
 
 

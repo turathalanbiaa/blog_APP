@@ -31,7 +31,13 @@ public class FireBaseService extends FirebaseMessagingService {
         if(remoteMessage.getNotification().getChannelId()!= null)
             chId=remoteMessage.getNotification().getChannelId();
 
-        sendNotification(chId,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+        if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+
+            Log.d(TAG, "post id: " + remoteMessage.getData().get("id"));
+        }
+
+            sendNotification(chId,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
         Log.d(TAG, "chID: "+remoteMessage.getNotification().getChannelId());
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Log.d(TAG, "onMessageReceived: "+remoteMessage.getNotification().getTitle());

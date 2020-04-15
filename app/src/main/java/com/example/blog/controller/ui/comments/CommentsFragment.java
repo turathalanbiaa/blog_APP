@@ -78,10 +78,10 @@ public class CommentsFragment extends Fragment implements CommentsRecyclerViewAd
        View root = inflater.inflate(R.layout.fragment_comments, container,false);
 
 
-       if(getActivity().getLocalClassName().equalsIgnoreCase("MainActivity"))
+       if(getActivity().getClass().getSimpleName().equalsIgnoreCase("MainActivity"))
         ((MainActivity) getActivity()).setOnCommentListener(this);
        //profile act
-       else
+       else if(getActivity().getClass().getSimpleName().equalsIgnoreCase("ProfileActivity"))
            ((ProfileActivity) getActivity()).setOnCommentListener(this);
 
         int postId;

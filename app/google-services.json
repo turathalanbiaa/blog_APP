@@ -10,10 +10,55 @@
       "client_info": {
         "mobilesdk_app_id": "1:928557662726:android:a522607259ea76c40df987",
         "android_client_info": {
+          "package_name": "com.example.blog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928557662726-o8diibc4l5ikj1mh2bmn2tgccr6ch12k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.blog",
+            "certificate_hash": "9fe0a7d081551ea0ea4e234d0c46dff49679ece0"
+          }
+        },
+        {
+          "client_id": "928557662726-d4h9k822h1n9cepp011d32l944ae2oqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYiu2uOXGEiP4RxdFV_EPwJM1-fDmQlGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928557662726-d4h9k822h1n9cepp011d32l944ae2oqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928557662726:android:c6f5f57a409cb2720df987",
+        "android_client_info": {
           "package_name": "com.turath.blog"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "928557662726-4m5fuub0p1fu4b9nmsertd4286r08bu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.turath.blog",
+            "certificate_hash": "9fe0a7d081551ea0ea4e234d0c46dff49679ece0"
+          }
+        },
         {
           "client_id": "928557662726-d4h9k822h1n9cepp011d32l944ae2oqs.apps.googleusercontent.com",
           "client_type": 3
