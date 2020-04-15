@@ -76,6 +76,8 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
     ProgressBar loading;
     TextView retry,postsNum;
 
+    int totalBlogs;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
          View root = inflater.inflate(R.layout.fragment_profile_posts, container, false);
@@ -275,8 +277,10 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
         ArrayList<Posts> postsList=new ArrayList<>();
         try {
 
-            if (isAdded())
-            postsNum.setText(getResources().getString(R.string.total_posts )+" : "+response.getString("total"));
+
+            totalBlogs=response.getInt("total");
+//            if (isAdded())
+//            postsNum.setText(getResources().getString(R.string.total_posts )+" : "+response.getString("total"));
 
 
 
@@ -333,7 +337,14 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
 
                 post.setCategory_name(catName);
 
-                postsList.add(post);
+                if(status==0){
+                    if(myProfile)
+                        postsList.add(post);
+                    totalBlogs--;
+                }
+                else
+                    postsList.add(post);
+
             }
 
 
@@ -345,6 +356,9 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
             e.printStackTrace();
             Log.d(TAG, "parsJsonObj: "+e.getMessage());
         }
+
+        if (isAdded())
+            postsNum.setText(getResources().getString(R.string.total_posts )+" : "+totalBlogs);
 
         return postsList;
     }
