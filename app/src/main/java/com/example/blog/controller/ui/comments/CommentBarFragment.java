@@ -151,7 +151,7 @@ public class CommentBarFragment extends Fragment {
                 }
 
 
-              if(getActivity().getClass().getSimpleName().equalsIgnoreCase("MainActivity"))
+//              if(getActivity().getClass().getSimpleName().equalsIgnoreCase("MainActivity"))
                 passData(1);
 
 
