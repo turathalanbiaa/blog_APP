@@ -172,6 +172,24 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
             navController.navigate(R.id.nav_cat_posts,bundle);
 
         }
+        if(intent.getExtras().getString("id",null)!=null){
+            Bundle bundle = new Bundle();
+            bundle.putInt("notify",1);
+            bundle.putString("postId",intent.getExtras().getString("id"));
+            navController.navigate(R.id.nav_full_post,bundle);
+        }
+        Bundle extras = getIntent().getExtras();
+        int notify=extras.getInt("notify",0);
+
+        if(notify==1){
+            String postId=extras.getString("postId");
+            if(!postId.equals("")){
+                Bundle bundle = new Bundle();
+                bundle.putInt("notify",1);
+                bundle.putString("postId",postId);
+                navController.navigate(R.id.nav_full_post,bundle);
+            }
+        }
 
 //        FirebaseInstanceId.getInstance().getInstanceId()
 //                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {

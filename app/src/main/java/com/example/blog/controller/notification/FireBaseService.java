@@ -27,25 +27,28 @@ public class FireBaseService extends FirebaseMessagingService {
         // If the application is in the foreground handle both data and notification messages here.
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
-        String chId=CHANNEL2_ID;
+        String chId=CHANNEL2_ID,postId="";
         if(remoteMessage.getNotification().getChannelId()!= null)
             chId=remoteMessage.getNotification().getChannelId();
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-
             Log.d(TAG, "post id: " + remoteMessage.getData().get("id"));
+            postId=remoteMessage.getData().get("id");
         }
 
-            sendNotification(chId,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+            sendNotification(postId,chId,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
         Log.d(TAG, "chID: "+remoteMessage.getNotification().getChannelId());
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Log.d(TAG, "onMessageReceived: "+remoteMessage.getNotification().getTitle());
         Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
     }
 
-    private void sendNotification(String chID,String messageTitle,String messageBody) {
+    private void sendNotification(String postId,String chID,String messageTitle,String messageBody) {
         Intent intent = new Intent(this, MainActivity.class);
+        if(!postId.equals("")){
+        intent.putExtra("notify",1);
+        intent.putExtra("postId",postId);}
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);

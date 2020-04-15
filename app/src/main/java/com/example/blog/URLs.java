@@ -24,8 +24,10 @@ public class URLs {
     private String updateProfile="updateprofile";
     private String searchForUsers="getSearchResults";
     private String fbLoginInDb="registerbyfacebook";
+    private String postById="postById";
 
     private String defaultProfilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
+
     private String imagePath="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/";
 
 //    private String imagePath="http://192.168.9.110/blog/public/images/";
@@ -150,5 +152,9 @@ public class URLs {
 
     public String getFbLoginInDb() {
         return fbLoginInDb;
+    }
+
+    public String getPostById() {
+        return postById;
     }
 }

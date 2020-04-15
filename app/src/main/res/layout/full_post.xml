@@ -60,7 +60,7 @@
             android:id="@+id/postTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="خاطرة"
+            android:text=""
             android:fontFamily="@font/myfont"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="فصبرٌ جميل لن تستطيع الأمّة أنْ تحقّق نهضة شاملة في حياتها ما لم تغيّر مفهومها عن الصبر، وتؤمن بأنّ الصبر هو الصبر على أداء الواجب وتحمّل المكاره في سبيل مقاومة الظلم والطغيان والترفّع عن الهموم الصغيرة من أج فصبرٌ جميل لن تستطيع الأمّة أنْ تحقّق نهضة شاملة في حياتها ما لم تغيّر مفهومها عن الصبر، وتؤمن بأنّ الصبر هو الصبر على أداء الواجب وتحمّل المكاره في سبيل مقاومة الظلم والطغيان والترفّع عن الهموم الصغيرة من أجفصبرٌ جميل لن تستطيع الأمّة أنْ تحقّق نهضة شاملة في حياتها ما لم تغيّر مفهومها عن الصبر، وتؤمن بأنّ الصبر هو الصبر على أداء الواجب وتحمّل المكاره في سبيل مقاومة الظلم والطغيان والترفّع عن الهموم الصغيرة من أج"
+            android:text=""
             android:fontFamily="@font/myfont"
             android:textSize="18sp"
             />
