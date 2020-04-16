@@ -3,12 +3,15 @@ package com.example.blog.controller;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,8 @@ public class SettingsDialogFragment extends DialogFragment  {
 
     Switch themeSwitch;
     SharedPreferences settingsPrefs;
+    RadioGroup fontSelect;
+    RadioButton f1,f2,f3;
     public SettingsDialogFragment(){}
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -62,11 +67,57 @@ public class SettingsDialogFragment extends DialogFragment  {
             }
         });
 
+        fontSelect=view.findViewById(R.id.fontSelect);
+        f1=view.findViewById(R.id.f1);
+        f2=view.findViewById(R.id.f2);
+        f3=view.findViewById(R.id.f3);
+        if(settingsPrefs.getInt("font",1)==1)
+        {
+            f1.setChecked(true);
+            SharedPreferences.Editor editor = settingsPrefs.edit();
+            editor.putInt("font", 1);
+            editor.apply();
+
+        }
+        else if(settingsPrefs.getInt("font",1)==2){
+
+            f2.setChecked(true);
+            SharedPreferences.Editor editor = settingsPrefs.edit();
+            editor.putInt("font", 2);
+            editor.apply();
+        }
+        else{
+
+            f3.setChecked(true);
+            SharedPreferences.Editor editor = settingsPrefs.edit();
+            editor.putInt("font", 3);
+            editor.apply();
+        }
+        fontSelect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int f=1;
+                if(i==f3.getId())
+                    f=3;
+                else if(i==f2.getId())
+                    f=2;
+                else
+                    f=1;
+                SharedPreferences.Editor editor = settingsPrefs.edit();
+            editor.putInt("font", f);
+            editor.apply();
+
+           getActivity().recreate();
+            }
+        });
+
         getDialog().setTitle("CommentsDialogFragment");
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_round_corner);
 
         return view;
     }
+
+
 
     @Override
     public void onResume() {

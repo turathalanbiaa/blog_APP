@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,6 +35,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.android.volley.VolleyError;
 import com.example.blog.controller.ui.category.CatDropDownFragment;
@@ -116,6 +118,17 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
             checkContent=true;
 
         }
+
+        //change font
+        SharedPreferences settingsPrefs = getSharedPreferences("settings", Activity.MODE_PRIVATE);
+        Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.myfont);
+        if(settingsPrefs.getInt("font",1)==3)
+            typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.myfont3);
+        else if (settingsPrefs.getInt("font",1)==2)
+            typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.myfont2);
+
+        title.setTypeface(typeface);
+        content.setTypeface(typeface);
 
 
 

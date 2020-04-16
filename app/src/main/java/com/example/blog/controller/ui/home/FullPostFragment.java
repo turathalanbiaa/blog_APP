@@ -1,6 +1,9 @@
 package com.example.blog.controller.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -65,6 +69,16 @@ public class FullPostFragment extends Fragment {
             userName=root.findViewById(R.id.ph_name);
             profileBackground=root.findViewById(R.id.profile_background);
 
+        //change font
+        SharedPreferences settingsPrefs = getActivity().getSharedPreferences("settings", Activity.MODE_PRIVATE);
+        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.myfont);
+        if(settingsPrefs.getInt("font",1)==3)
+            typeface = ResourcesCompat.getFont(getContext(), R.font.myfont3);
+        else if (settingsPrefs.getInt("font",1)==2)
+            typeface = ResourcesCompat.getFont(getContext(), R.font.myfont2);
+
+        postTitle.setTypeface(typeface);
+        postDetails.setTypeface(typeface);
 
         Log.e("TAG", "onCreateView: "+getArguments().getInt("notify"));
         if(getArguments().getInt("notify")==1 ){
