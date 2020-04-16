@@ -80,6 +80,12 @@ public class FullPostFragment extends Fragment {
         postTitle.setTypeface(typeface);
         postDetails.setTypeface(typeface);
 
+        //change size
+        postDetails.setTextSize(settingsPrefs.getFloat("size",16));
+        postTitle.setTextSize(settingsPrefs.getFloat("size",16)+4);
+        postDetails.invalidate();
+        postTitle.invalidate();
+
         Log.e("TAG", "onCreateView: "+getArguments().getInt("notify"));
         if(getArguments().getInt("notify")==1 ){
             id=getArguments().getString("postId");

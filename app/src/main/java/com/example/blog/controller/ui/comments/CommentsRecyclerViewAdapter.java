@@ -1,13 +1,17 @@
 package com.example.blog.controller.ui.comments;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blog.R;
@@ -193,6 +197,20 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
             itemView.setOnClickListener(clickListener);
             name.setOnClickListener(nameClickListener);
+
+            //change font
+            SharedPreferences settingsPrefs = context.getSharedPreferences("settings", Activity.MODE_PRIVATE);
+            Typeface typeface = ResourcesCompat.getFont(context, R.font.myfont);
+            if(settingsPrefs.getInt("font",1)==3)
+                typeface = ResourcesCompat.getFont(context, R.font.myfont3);
+            else if (settingsPrefs.getInt("font",1)==2)
+                typeface = ResourcesCompat.getFont(context, R.font.myfont2);
+
+            comment.setTypeface(typeface);
+
+            //change size
+            comment.setTextSize(settingsPrefs.getFloat("size",16));
+            comment.invalidate();
 
         }
         View.OnClickListener clickListener = new View.OnClickListener() {

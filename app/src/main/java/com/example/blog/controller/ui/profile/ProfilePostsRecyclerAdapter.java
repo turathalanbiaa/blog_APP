@@ -288,6 +288,11 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             postTitle.setTypeface(typeface);
             postDetails.setTypeface(typeface);
 
+            //change size
+            postDetails.setTextSize(settingsPrefs.getFloat("size",16));
+            postTitle.setTextSize(settingsPrefs.getFloat("size",16)+4);
+            postDetails.invalidate();
+            postTitle.invalidate();
 
         }
         View.OnClickListener postClickListener = new View.OnClickListener() {

@@ -113,7 +113,12 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //                        load(R.drawable.aqlamdefault).fit().centerCrop().into( postVH.backgroundPic);
 
 
-
+//                //change size
+//                SharedPreferences settingsPrefs = context.getSharedPreferences("settings", Activity.MODE_PRIVATE);
+//                postVH.postDetails.setTextSize(settingsPrefs.getFloat("size",16));
+//                postVH.postTitle.setTextSize(settingsPrefs.getFloat("size",16)+4);
+//                postVH.postDetails.invalidate();
+//                postVH.postTitle.invalidate();
 
 
                 postVH.postTitle.setText(posts.getTitle());
@@ -283,6 +288,12 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             postTitle.setTypeface(typeface);
             postDetails.setTypeface(typeface);
+
+            //change size
+           postDetails.setTextSize(settingsPrefs.getFloat("size",16));
+           postTitle.setTextSize(settingsPrefs.getFloat("size",16)+6);
+            postDetails.invalidate();
+            postTitle.invalidate();
 
         }
         View.OnClickListener postClickListener = new View.OnClickListener() {

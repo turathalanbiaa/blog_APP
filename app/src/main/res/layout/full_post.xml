@@ -65,6 +65,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_gravity="center"
+            android:textColor="@color/colorPrimaryDark"
 
             />
 

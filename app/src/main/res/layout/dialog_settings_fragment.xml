@@ -13,6 +13,7 @@
         android:fontFamily="@font/myfont"
         android:padding="10dp"
         android:switchPadding="15dp"
+        android:layoutDirection="ltr"
 
         />
 
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
+        android:layoutDirection="rtl"
 
         >
 
@@ -63,6 +65,51 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:background="@color/colorAccent"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layoutDirection="ltr"
+        android:padding="10dp"
+        android:layout_gravity="center">
+        <ImageButton
+            android:id="@+id/increase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/bg_button"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/sizeSample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="حجم الخط"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="16sp"/>
+
+        <ImageButton
+            android:id="@+id/decrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_remove_circle_outline_black_24dp"
+            android:background="@drawable/bg_button"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/defaultSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="الإعدادات الافتراضية"
+        android:background="@drawable/bg_button3"
+        android:layout_margin="10dp"
+        android:minHeight="0dp"
+        android:padding="3dp"
+
         />
 
 </LinearLayout>
