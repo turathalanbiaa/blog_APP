@@ -30,8 +30,9 @@
                 android:src="@drawable/ic_settings_black_24dp"
                 android:background="@drawable/bg_button"
                 />
-        </androidx.appcompat.widget.Toolbar>
 
+
+        </androidx.appcompat.widget.Toolbar>
 
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -199,6 +199,7 @@ public class SettingsDialogFragment extends DialogFragment  {
                 editor.putFloat("size", 16);
                 editor.putInt("font",1);
                 editor.apply();
+                changed=true;
                 dismiss();
             }
         });

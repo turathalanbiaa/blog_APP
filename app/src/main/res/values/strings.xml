@@ -14,9 +14,11 @@
     <string name="menu_register">تسجيل حساب جديد</string>
     <string name="menu_login">تسجيل الدخول</string>
     <string name="menu_logout">تسجيل الخروج</string>
+    <string name="menu_search">بحث</string>
 
     //text hints/labels
     <string name="search_users">بحث عن مستخدم</string>
+    <string name="search_blog">بحث عن تدوينه</string>
     <string name="total_posts">عدد التدوينات</string>
     <string name="points">النقاط</string>
     <string name="nightMode">الوضع الليلي</string>

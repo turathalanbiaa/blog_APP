@@ -163,12 +163,11 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
 
             String img=prefs.getString("profile_pic",null);
-            if(img != null && !img.equals("")) {
-                if (img.equals("default"))
+            if(img == null || img.equals("") || img.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png") ||img.equals("default"))
                     Picasso.with(MainActivity.this).load(R.drawable.default_profile_pic).into(profilePic);
                 else
                     Picasso.with(MainActivity.this).load(img).into(profilePic);
-            }
+
             nameTextView.setText(prefs.getString("user_name","ضيف"));
         }
         else{

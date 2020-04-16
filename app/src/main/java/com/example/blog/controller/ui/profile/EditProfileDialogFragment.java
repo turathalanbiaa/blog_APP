@@ -114,13 +114,17 @@ public class EditProfileDialogFragment extends DialogFragment  {
        userName=view.findViewById(R.id.ph_name);
 
        userName.setText(name);
+        if(pic == null || pic.equals("") || pic.equals("http://aqlam.turathalanbiaa.com/aqlam/image/000000.png") ||pic.equals("default"))
+            Picasso.with(getApplicationContext()).load(R.drawable.default_profile_pic).into(profilePic);
+
+        else
         Picasso.with(getContext()).load(pic).fit().into(profilePic);
 
         chooseImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 requestPermission();
-                startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), 1);
+                startActivityForResult(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI), 1);
 
             }
         });
@@ -131,6 +135,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
                 dismiss();
             }
         });
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +155,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
 
                     }
                     else{
+                        //
                         progressDialog.show();
                         updateNoImg(userId,name);
                     }

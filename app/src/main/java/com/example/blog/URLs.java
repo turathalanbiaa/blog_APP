@@ -2,7 +2,7 @@ package com.example.blog;
 
 public class URLs {
 
-//    private String baseUrl="http://192.168.9.110:8000/api/";
+//    private String baseUrl="http://192.168.9.107:8000/api/";
     private String baseUrl="http://blog-api.turathalanbiaa.com/api/";
 
     private String route;
@@ -25,6 +25,7 @@ public class URLs {
     private String searchForUsers="getSearchResults";
     private String fbLoginInDb="registerbyfacebook";
     private String postById="postById";
+    private String searchPost="searchPost";
 
     private String defaultProfilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
 
@@ -156,5 +157,9 @@ public class URLs {
 
     public String getPostById() {
         return postById;
+    }
+
+    public String getSearchPost() {
+        return searchPost;
     }
 }
