@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.blog.controller.SettingsDialogFragment;
 import com.example.blog.controller.notification.FireBaseService;
 //import com.example.blog.controller.notification.ForegroundService;
 import com.example.blog.controller.notification.NotificationUtils;
@@ -25,7 +26,10 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -42,12 +46,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 
 public class MainActivity extends AppCompatActivity implements CatDropDownFragment.OnDataPass, CommentBarFragment.OnCommentSent {
 
@@ -57,16 +64,21 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
     FloatingActionButton fab;
     public String fbId="";
     public Boolean actLoggedIn=false;
-    SharedPreferences prefs;
+    SharedPreferences prefs,settingsPrefs;
    public boolean loggedOut;
 
     private FragmentInterface fragmentInterfaceListener;
     private CommentFragmentInterface comentFragmentInterfaceListener;
+    ImageButton settings;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        settingsPrefs = getSharedPreferences("settings", Activity.MODE_PRIVATE);
+        if(settingsPrefs.getBoolean("nightMode",false))
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -211,6 +223,39 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 //                });
 
 //
+
+        settings=findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SettingsDialogFragment cf=new SettingsDialogFragment();
+                FragmentTransaction ft =  getSupportFragmentManager().beginTransaction();
+                Fragment prev =  getSupportFragmentManager().findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+
+
+                cf.show(ft, "dialog");
+
+//                if(!settingsPrefs.getBoolean("nightMode",false)) {
+//                    SharedPreferences.Editor editor = settingsPrefs.edit();
+//                    editor.putBoolean("nightMode", true);
+//                    editor.apply();
+//                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+//
+//                }
+//                else{
+//                    SharedPreferences.Editor editor = settingsPrefs.edit();
+//                    editor.putBoolean("nightMode", false);
+//                    editor.apply();
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                }
+//                recreate();
+            }
+        });
     }
 
 

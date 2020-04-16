@@ -43,8 +43,14 @@ public class PopUpClass {
 
         ImageView imgContainer= popupView.findViewById(R.id.pic_popup);
 
-        Picasso.with(view.getContext()).load(img).fit().centerInside().into(imgContainer);
+        if((img != null && !img.equals("") && !img.equals("aqlam-default.jpg"))){
+            Picasso.with(view.getContext()).load(img).fit().centerInside().into(imgContainer);
 //
+        }
+        else
+            Picasso.with(view.getContext()).load(R.drawable.aqlamdefault).fit().centerInside().into(imgContainer);
+//
+
 
 //        Button close = popupView.findViewById(R.id.closePopup);
 //       close.setOnClickListener(new View.OnClickListener() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-<!--    <color name="colorPrimaryDark">#00574B</color>-->
-    <color name="colorPrimaryDark">#000000</color>
+    <!--    <color name="colorPrimaryDark">#00574B</color>-->
+    <color name="colorPrimaryDark">#2f763a</color>
     <color name="colorAccent">#4D774A</color>
 
 
@@ -13,8 +13,10 @@
     <color name="tag_begin">#9DB89B</color>
     <color name="tag_end">#9DB89B</color>
 
-    <color name="gradiant_begin">#4D774A</color>
-    <color name="gradiant_end">#fff</color>
+    <color name="gradiant_begin">#383838</color>
+    <color name="gradiant_end">#8D8D8D</color>
+
+
 
     <color name="side_nav_begin">#9DB89B</color>
     <color name="side_nav_end">#9DB89B</color>
