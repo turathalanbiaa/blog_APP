@@ -344,11 +344,11 @@ void hideKeyboard(Activity activity) {
         };
     }
     //
-    ArrayList<Posts> parsJsonObj(JSONObject res){
+    ArrayList<Posts> parsJsonObj(JSONObject response){
 
         ArrayList<Posts> postsList=new ArrayList<>();
         try {
-            JSONObject response=res.getJSONObject("data");
+//            JSONObject response=res.getJSONObject("data");
 
             //pages wont load if total page count is more than 11
             //increasing its value as the current page increases seems to work

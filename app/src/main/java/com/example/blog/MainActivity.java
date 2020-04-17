@@ -239,20 +239,6 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 
                 cf.show(ft, "dialog");
 
-//                if(!settingsPrefs.getBoolean("nightMode",false)) {
-//                    SharedPreferences.Editor editor = settingsPrefs.edit();
-//                    editor.putBoolean("nightMode", true);
-//                    editor.apply();
-//                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
-//
-//                }
-//                else{
-//                    SharedPreferences.Editor editor = settingsPrefs.edit();
-//                    editor.putBoolean("nightMode", false);
-//                    editor.apply();
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//                }
-//                recreate();
             }
         });
     }

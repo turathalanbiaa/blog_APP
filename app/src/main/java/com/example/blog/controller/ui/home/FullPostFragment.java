@@ -4,23 +4,27 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.volley.VolleyError;
 import com.example.blog.URLs;
+import com.example.blog.controller.tools.MyDBHandler;
 import com.example.blog.controller.tools.volley.FetchJson;
 import com.example.blog.controller.tools.volley.IResult;
 import com.example.blog.controller.ui.profile.ProfileActivity;
@@ -45,16 +49,20 @@ public class FullPostFragment extends Fragment {
     Button catBtn;
     Posts post=new Posts();
     String id;
-
+    ImageButton bookmark;
+    Drawable saved,notSaved;
     URLs baseUrl=new URLs();
     private String TAG = "fullPostFragment";
     IResult mResultCallback = null;
     FetchJson mVolleyService;
+    CardView fullpostCard;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
           View root = inflater.inflate(R.layout.full_post, container, false);
 //
+        fullpostCard=root.findViewById(R.id.fullpostCard);
 
             postPic=root.findViewById(R.id.post_pic);
             postTitle=root.findViewById(R.id.postTitle);
@@ -68,6 +76,9 @@ public class FullPostFragment extends Fragment {
             profilePic=root.findViewById(R.id.ph_profilePic);
             userName=root.findViewById(R.id.ph_name);
             profileBackground=root.findViewById(R.id.profile_background);
+
+            bookmark=root.findViewById(R.id.bookmark);
+
 
         //change font
         SharedPreferences settingsPrefs = getActivity().getSharedPreferences("settings", Activity.MODE_PRIVATE);
@@ -97,70 +108,8 @@ public class FullPostFragment extends Fragment {
             post = getArguments().getParcelable("post");
             setPost();
         }
-//else {
-//    post = getArguments().getParcelable("post");
-//
-//
-////        postId.setText(post_id);
-//
-//    postTitle.setText(post.getTitle());
-//    postDetails.setText(post.getContent());
-//    postId.setText("" + post.getId());
-//    viewCount.setText("" + post.getViews());
-//    comments.setText(post.getCommentsCount());
-//    TimeAgo timeago = new TimeAgo();
-//
-//    String time = timeago.covertTimeToText(post.getCreated_at());
-//    created_at.setText(time);
-//
-//
-//    if (post.getProfilePic().equals("default")) {
-//        Picasso.with(getContext()).
-//                load(R.drawable.default_profile_pic).into(profilePic);
-//    } else {
-//        Picasso.with(getContext()).
-//                load(post.getProfilePic()).into(profilePic);
-//
-//    }
-//    catBtn.setText(post.getCategory_name());
-//
-//    //name
-//    userName.setText(post.getUsername());
-//
-//
-//    final String img = post.getImage();
-//
-//    if (img != null && !img.equals("") && !img.equals("aqlam-default.jpg")) {
-//        postPic.setVisibility(View.VISIBLE);
-//        postPic.getLayoutParams().height = 750;
-//        Picasso.with(getContext()).load(img).fit().centerCrop().into(postPic);
-//    }
-//
-//    postPic.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            PopUpClass popUpClass = new PopUpClass();
-//            popUpClass.showPopupWindow(view, img);
-//
-//        }
-//    });
-//
-//
-//    userName.setOnClickListener(profileListener);
-//    profilePic.setOnClickListener(profileListener);
-//
-//    catBtn.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//
-//            Bundle bundle = new Bundle();
-//            bundle.putInt("catId", post.getCategory_id());
-//            Navigation.findNavController(view).navigate(R.id.action_nav_post_to_nav_cat_posts, bundle);
-////
-//        }
-//    });
-//
-//}
+
+
 
         return root;
     }
@@ -226,6 +175,31 @@ public class FullPostFragment extends Fragment {
                 bundle.putInt("catId", post.getCategory_id());
                 Navigation.findNavController(view).navigate(R.id.action_nav_post_to_nav_cat_posts, bundle);
 //
+            }
+        });
+        fullpostCard.setVisibility(View.VISIBLE);
+        //bookmark
+        saved = getResources().getDrawable(R.drawable.ic_bookmark_black_24dp);
+        notSaved = getResources().getDrawable(R.drawable.ic_bookmark_border_black_24dp);
+        MyDBHandler dbHandler = new MyDBHandler(getContext(), null, null, 1);
+        if(dbHandler.findHandler(post.getId()))
+            bookmark.setBackground(saved);
+        else
+            bookmark.setBackground(notSaved);
+
+
+        bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyDBHandler dbHandler = new MyDBHandler(getContext(), null, null, 1);
+                if(dbHandler.findHandler(post.getId())) {
+                    bookmark.setBackground(notSaved);
+                    dbHandler.deleteHandler(post.getId());
+                }
+                else{
+                    bookmark.setBackground(saved);
+                    dbHandler.addHandler(post);
+                }
             }
         });
     }

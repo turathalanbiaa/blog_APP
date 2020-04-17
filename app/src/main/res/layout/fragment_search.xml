@@ -65,23 +65,16 @@
 
     </LinearLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layout"
 
-        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/posts_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:layout_below="@id/layout"
 
             >
 
         </androidx.recyclerview.widget.RecyclerView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

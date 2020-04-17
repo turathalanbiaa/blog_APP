@@ -40,6 +40,22 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 >
+                <ImageButton
+                    android:id="@+id/bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_bookmark_border_black_24dp"
+                    android:background="@drawable/bg_button2"
+                    android:layout_gravity="center"
+                    />
+                <View
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:background="?android:attr/listDivider" />
+
+
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="wrap_content"

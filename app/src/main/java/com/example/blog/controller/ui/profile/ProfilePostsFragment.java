@@ -314,6 +314,8 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
                 int cat_id=obj.getInt("category_id");
                 String userId=obj.getString("user_id");
                 String commentsCount=obj.getString("cmd_count");
+                JSONObject user=obj.getJSONObject("user");
+                String userName=user.getString("name");
 
                 if(image != null && !image.equals("") && !image.equals("aqlam-default.jpg"))
                     image=baseUrl.getImagePath()+image;
@@ -330,6 +332,7 @@ public class ProfilePostsFragment extends Fragment implements ClickListenerInter
                 post.setContent(content);
                 post.setUser_id(userId);
                 post.setCommentsCount(commentsCount);
+                post.setUsername(userName);
 
                 JSONObject cat=obj.getJSONObject("cat");
                 String catName=cat.getString("name");

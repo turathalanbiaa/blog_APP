@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blog.R;
 import com.example.blog.controller.tools.ClickListenerInterface;
+import com.example.blog.controller.tools.MyDBHandler;
 import com.example.blog.controller.tools.TimeAgo;
 import com.example.blog.model.Posts;
 import com.facebook.AccessToken;
@@ -137,6 +140,17 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
                     }
 
+                //bookmark
+                Drawable saved = context.getResources().getDrawable(R.drawable.ic_bookmark_black_24dp);
+                Drawable notSaved = context.getResources().getDrawable(R.drawable.ic_bookmark_border_black_24dp);
+                MyDBHandler dbHandler = new MyDBHandler(context, null, null, 1);
+                if(dbHandler.findHandler(posts.getId()))
+                    postVH.bookmark.setBackground(saved);
+                else
+                    postVH.bookmark.setBackground(notSaved);
+
+
+
                 break;
             case LOADING:
 //                Do nothing
@@ -231,7 +245,7 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         LinearLayout contentll,catLL;
         Button catBtn;
         TextView delete,edit;
-        ImageButton notApproved;
+        ImageButton notApproved,bookmark;
 
         public PostVH(View itemView) {
             super(itemView);
@@ -293,6 +307,26 @@ public class ProfilePostsRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             postTitle.setTextSize(settingsPrefs.getFloat("size",16)+4);
             postDetails.invalidate();
             postTitle.invalidate();
+
+            bookmark=itemView.findViewById(R.id.bookmark);
+
+            bookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Drawable saved = context.getResources().getDrawable(R.drawable.ic_bookmark_black_24dp);
+                    Drawable notSaved = context.getResources().getDrawable(R.drawable.ic_bookmark_border_black_24dp);
+                    MyDBHandler dbHandler = new MyDBHandler(context, null, null, 1);
+                    if(dbHandler.findHandler(getPosts().get(getAdapterPosition()).getId())) {
+                        bookmark.setBackground(notSaved);
+                        dbHandler.deleteHandler(getPosts().get(getAdapterPosition()).getId());
+                    }
+                    else{
+                        bookmark.setBackground(saved);
+                        dbHandler.addHandler(getPosts().get(getAdapterPosition()));
+                    }
+                    Log.d("ffffffff", "onClick: "+getAdapterPosition());
+                }
+            });
 
         }
         View.OnClickListener postClickListener = new View.OnClickListener() {

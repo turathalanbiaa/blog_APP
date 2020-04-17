@@ -267,7 +267,7 @@ public class HomeFragment extends Fragment implements  SwipeRefreshLayout.OnRefr
                layoutManager.onRestoreInstanceState(listState);}
 
             }
-        }, 1000);
+        }, 3000);
     }
 
     private void loadFirstPage() {

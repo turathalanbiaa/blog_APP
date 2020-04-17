@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blog.controller.tools.ClickListenerInterface;
 import com.example.blog.R;
+import com.example.blog.controller.tools.MyDBHandler;
 import com.example.blog.controller.tools.TimeAgo;
 import com.example.blog.model.Posts;
 import com.squareup.picasso.Picasso;
@@ -108,17 +111,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 //name
                 postVH.userName.setText(posts.getUsername());
 
-                //background pic
-//                Picasso.with( postVH.backgroundPic.getContext()).
-//                        load(R.drawable.aqlamdefault).fit().centerCrop().into( postVH.backgroundPic);
 
-
-//                //change size
-//                SharedPreferences settingsPrefs = context.getSharedPreferences("settings", Activity.MODE_PRIVATE);
-//                postVH.postDetails.setTextSize(settingsPrefs.getFloat("size",16));
-//                postVH.postTitle.setTextSize(settingsPrefs.getFloat("size",16)+4);
-//                postVH.postDetails.invalidate();
-//                postVH.postTitle.invalidate();
 
 
                 postVH.postTitle.setText(posts.getTitle());
@@ -150,7 +143,19 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     postVH.postPic.setVisibility(View.VISIBLE);
                     Picasso.with(postVH.postPic.getContext()).load(R.drawable.aqlamdefault).fit().centerCrop().into(postVH.postPic);
                 }
-                break;
+
+                //bookmark
+                Drawable saved = context.getResources().getDrawable(R.drawable.ic_bookmark_black_24dp);
+                Drawable notSaved = context.getResources().getDrawable(R.drawable.ic_bookmark_border_black_24dp);
+                MyDBHandler dbHandler = new MyDBHandler(context, null, null, 1);
+                if(dbHandler.findHandler(posts.getId()))
+                    postVH.bookmark.setBackground(saved);
+                else
+                    postVH.bookmark.setBackground(notSaved);
+
+
+
+                    break;
             case LOADING:
 //                Do nothing
                 break;
@@ -245,6 +250,8 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button catBtn;
         TextView userName;
 
+        ImageButton bookmark;
+
         public PostVH(View itemView) {
             super(itemView);
             postPic = itemView.findViewById(R.id.post_pic);
@@ -294,6 +301,28 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
            postTitle.setTextSize(settingsPrefs.getFloat("size",16)+6);
             postDetails.invalidate();
             postTitle.invalidate();
+
+            //bookmark
+            bookmark=itemView.findViewById(R.id.bookmark);
+
+
+            bookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Drawable saved = context.getResources().getDrawable(R.drawable.ic_bookmark_black_24dp);
+                    Drawable notSaved = context.getResources().getDrawable(R.drawable.ic_bookmark_border_black_24dp);
+                    MyDBHandler dbHandler = new MyDBHandler(context, null, null, 1);
+                    if(dbHandler.findHandler(getPosts().get(getAdapterPosition()).getId())) {
+                        bookmark.setBackground(notSaved);
+                        dbHandler.deleteHandler(getPosts().get(getAdapterPosition()).getId());
+                    }
+                    else{
+                        bookmark.setBackground(saved);
+                        dbHandler.addHandler(getPosts().get(getAdapterPosition()));
+                    }
+
+                }
+            });
 
         }
         View.OnClickListener postClickListener = new View.OnClickListener() {
