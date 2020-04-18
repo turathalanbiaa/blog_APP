@@ -97,10 +97,8 @@ public class FullPostFragment extends Fragment {
         postDetails.invalidate();
         postTitle.invalidate();
 
-        Log.e("TAG", "onCreateView: "+getArguments().getInt("notify"));
         if(getArguments().getInt("notify")==1 ){
             id=getArguments().getString("postId");
-            Log.d("TAG", "onCreateView: "+"poooooost id gotten"+id);
             getPost(id);
 
         }
@@ -251,6 +249,12 @@ public class FullPostFragment extends Fragment {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post " + error);
+                int c=10;
+                if(c>0) {
+                    getPost(id);
+                    c--;
+                }
+
 
 
             }
