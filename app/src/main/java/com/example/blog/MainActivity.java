@@ -184,9 +184,11 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
 
         }
         if(intent.getExtras().getString("id",null)!=null){
+
             Bundle bundle = new Bundle();
             bundle.putInt("notify",1);
             bundle.putString("postId",intent.getExtras().getString("id"));
+            intent.removeExtra("id");
             navController.navigate(R.id.nav_full_post,bundle);
         }
         Bundle extras = getIntent().getExtras();
