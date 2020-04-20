@@ -198,9 +198,13 @@ public class SettingsDialogFragment extends DialogFragment  {
                 SharedPreferences.Editor editor = settingsPrefs.edit();
                 editor.putFloat("size", 16);
                 editor.putInt("font",1);
+                editor.putBoolean("nightMode", false);
                 editor.apply();
                 changed=true;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                getActivity().recreate();
                 dismiss();
+
             }
         });
 
