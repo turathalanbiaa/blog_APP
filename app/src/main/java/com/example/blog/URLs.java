@@ -26,6 +26,7 @@ public class URLs {
     private String fbLoginInDb="registerbyfacebook";
     private String postById="postById";
     private String searchPost="searchPost";
+    private String saveToken="saveToken";
 
     private String defaultProfilePic="https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/000000.png";
 
@@ -161,5 +162,9 @@ public class URLs {
 
     public String getSearchPost() {
         return searchPost;
+    }
+
+    public String getSaveToken() {
+        return saveToken;
     }
 }

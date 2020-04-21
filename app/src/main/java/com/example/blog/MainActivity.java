@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
         settingsPrefs = getSharedPreferences("settings", Activity.MODE_PRIVATE);
         if(settingsPrefs.getBoolean("nightMode",false))
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);

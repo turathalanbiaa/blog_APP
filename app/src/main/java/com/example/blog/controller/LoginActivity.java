@@ -1,5 +1,6 @@
 package com.example.blog.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -18,10 +19,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.blog.MainActivity;
 import com.example.blog.R;
 import com.example.blog.URLs;
+import com.example.blog.controller.tools.volley.AppController;
 import com.example.blog.controller.tools.volley.FetchJson;
 import com.example.blog.controller.tools.volley.IResult;
 import com.example.blog.model.Users;
@@ -35,6 +41,10 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -59,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox checkbox_turath_login;
     boolean turath=false;
     String fbId,fbName,fbPic;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +195,74 @@ public class LoginActivity extends AppCompatActivity {
         mVolleyService.postDataVolley(reqType,url,sendJson);
 //
     }
+
+private void saveToken() {
+
+    String user_id,token;
+    SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);
+   user_id= prefs.getString("user_id","");
+   token=getToken();
+
+   if(!user_id.equals("") && !token.equals("")) {
+       String url = baseUrl.getUrl(baseUrl.getSaveToken());
+       Map<String, String> params = new HashMap<>();
+       params.put("id", user_id);
+       params.put("token", token);
+
+
+       JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST,
+               url, new JSONObject(params), new Response.Listener<JSONObject>() {
+
+           @Override
+           public void onResponse(JSONObject response) {
+               Log.d(TAG, response.toString());
+
+               try { }
+
+               catch (Exception e) {
+                   e.printStackTrace();
+                   Log.d(TAG, "onErrorResponse: " + e.getMessage());
+
+               }
+
+
+           }
+       }, new Response.ErrorListener() {
+           @Override
+           public void onErrorResponse(VolleyError error) {
+               VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+           }
+
+       });
+
+       // Adding request to request queue
+       AppController.getInstance().addToRequestQueue(req);
+   }
+
+}
+
+    private String getToken() {
+        token="";
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG+" FCM token", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        token = task.getResult().getToken();
+                        Log.d(TAG+" FCM token", token);
+
+                    }
+                });
+        return token;
+    }
+
     void initVolleyCallback(){
         mResultCallback = new IResult() {
             @Override
@@ -204,6 +283,9 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),R.string.email_taken,Toast.LENGTH_LONG).show();
                         }
                         else {
+                            //add fcm token
+                            saveToken();
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -216,6 +298,9 @@ public class LoginActivity extends AppCompatActivity {
 //                }
                 else {
                     if (parsJson(response)) {
+                        //add fcm token
+                        saveToken();
+
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
