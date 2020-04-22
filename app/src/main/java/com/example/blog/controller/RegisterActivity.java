@@ -1,5 +1,6 @@
 package com.example.blog.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -17,14 +18,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.blog.MainActivity;
 import com.example.blog.R;
 import com.example.blog.URLs;
 import com.example.blog.controller.tools.TextValidator;
+import com.example.blog.controller.tools.volley.AppController;
 import com.example.blog.controller.tools.volley.FetchJson;
 import com.example.blog.controller.tools.volley.IResult;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -217,6 +227,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else if(parsJson(response)){
                     LoginManager.getInstance().logOut();
+                    saveToken();
                     Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -243,7 +254,67 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
     }
+    private void saveToken() {
 
+        SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);
+
+        final String user_id=prefs.getString("user_id","");
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG+" FCM token", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+                        Log.d(TAG+" FCM token", token);
+
+                        String url = baseUrl.getUrl(baseUrl.getSaveToken());
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id", user_id);
+                        params.put("token", token);
+
+                        Log.e(TAG, "saveToken: "+user_id );
+
+                        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST,
+                                url, new JSONObject(params), new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e(TAG, response.toString());
+
+                                try { }
+
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                    Log.d(TAG, "onErrorResponse: " + e.getMessage());
+
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+                            }
+
+                        });
+
+                        // Adding request to request queue
+                        AppController.getInstance().addToRequestQueue(req);
+
+                    }
+                });
+
+
+    }
 
     boolean parsJson(JSONObject response) {
 

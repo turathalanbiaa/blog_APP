@@ -2,7 +2,7 @@ package com.example.blog;
 
 public class URLs {
 
-//    private String baseUrl="http://192.168.9.107:8000/api/";
+//    private String baseUrl="http://192.168.9.110:8000/api/";
     private String baseUrl="http://blog-api.turathalanbiaa.com/api/";
 
     private String route;

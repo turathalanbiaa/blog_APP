@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox checkbox_turath_login;
     boolean turath=false;
     String fbId,fbName,fbPic;
-    private String token;
+     String fb_user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
         String url=baseUrl.getUrl(baseUrl.getFbLoginInDb());
         initVolleyCallback();
         mVolleyService =new FetchJson(mResultCallback,getApplicationContext());
+        fb_user_id=id;
         Map<String,String> params=new HashMap<>();
         params.put("id",id);
         params.put("name",name);
@@ -196,55 +197,14 @@ public class LoginActivity extends AppCompatActivity {
 //
     }
 
-private void saveToken() {
-
-    String user_id,token;
-    SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);
-   user_id= prefs.getString("user_id","");
-   token=getToken();
-
-   if(!user_id.equals("") && !token.equals("")) {
-       String url = baseUrl.getUrl(baseUrl.getSaveToken());
-       Map<String, String> params = new HashMap<>();
-       params.put("id", user_id);
-       params.put("token", token);
 
 
-       JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST,
-               url, new JSONObject(params), new Response.Listener<JSONObject>() {
+    private void saveToken() {
 
-           @Override
-           public void onResponse(JSONObject response) {
-               Log.d(TAG, response.toString());
+        SharedPreferences prefs = getSharedPreferences("profile", Activity.MODE_PRIVATE);
 
-               try { }
+        final String user_id=prefs.getString("user_id","");
 
-               catch (Exception e) {
-                   e.printStackTrace();
-                   Log.d(TAG, "onErrorResponse: " + e.getMessage());
-
-               }
-
-
-           }
-       }, new Response.ErrorListener() {
-           @Override
-           public void onErrorResponse(VolleyError error) {
-               VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-
-           }
-
-       });
-
-       // Adding request to request queue
-       AppController.getInstance().addToRequestQueue(req);
-   }
-
-}
-
-    private String getToken() {
-        token="";
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -255,12 +215,54 @@ private void saveToken() {
                         }
 
                         // Get new Instance ID token
-                        token = task.getResult().getToken();
-                        Log.d(TAG+" FCM token", token);
+                       String token = task.getResult().getToken();
+                        Log.d(TAG+" token", token);
+
+                        String url = baseUrl.getUrl(baseUrl.getSaveToken());
+                        Map<String, String> params = new HashMap<>();
+                        if(!user_id.equals(""))
+                             params.put("id", user_id);
+                        else
+                            params.put("id", fb_user_id);
+
+                        params.put("token", token);
+
+                        Log.e(TAG, "saveToken: "+user_id );
+
+                        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST,
+                                url, new JSONObject(params), new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e(TAG, response.toString());
+
+                                try { }
+
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                    Log.d(TAG, "onErrorResponse: " + e.getMessage());
+
+                                }
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+                            }
+
+                        });
+
+                        // Adding request to request queue
+                        AppController.getInstance().addToRequestQueue(req);
 
                     }
                 });
-        return token;
+
+
     }
 
     void initVolleyCallback(){
