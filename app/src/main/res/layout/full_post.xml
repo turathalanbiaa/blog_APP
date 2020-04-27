@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="8dp"
-    android:id="@+id/fullpostCard"
-    android:visibility="gone"
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:orientation="vertical"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_margin="12dp"-->
+<!--    app:cardCornerRadius="4dp"-->
+<!--    app:cardElevation="8dp"-->
+<!--    android:id="@+id/fullpostCard"-->
+<!--    android:visibility="gone"-->
 
-    >
+<!--    >-->
     <ScrollView
-        android:id="@+id/scrollView_post"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/fullpost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/commentBarFrame"
         android:layout_alignParentLeft="true"
-
-
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+
+    android:visibility="gone"
+
+
         >
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,19 +41,32 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             />
-        <include layout="@layout/profile_header"/>
+<!--        <include layout="@layout/profile_header"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layoutDirection="ltr"
             >
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:paddingTop="5dp">-->
+        <TextView
+
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/postTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:fontFamily="@font/myfont"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="10dp"
+
+            />
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
@@ -58,30 +77,9 @@
                 android:drawablePadding="5dp"
                 android:layout_weight="0"
                 android:drawableLeft="@drawable/ic_date_range_black_24dp"
-
                 android:gravity="center"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
                 />
-
-
-<!--            </LinearLayout>-->
-        <TextView
-
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="5dp"
-            android:id="@+id/postTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/myfont"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-
-            />
-
 
         </LinearLayout>
 
@@ -97,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text=""
+            android:text="details"
             android:fontFamily="@font/myfont"
             android:textSize="18sp"
             />
@@ -120,20 +118,6 @@
             android:layout_height="1dp"
             android:padding="10dp"/>
 
-<!--        <HorizontalScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="7dp"-->
-<!--            >-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_gravity="right"-->
-
-
-<!--                >-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,24 +125,6 @@
             android:padding="7dp"
             android:layoutDirection="ltr"
             >
-<!--            <TextView-->
-<!--                android:id="@+id/time"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Time"-->
-<!--                android:paddingRight="10dp"-->
-<!--                android:paddingLeft="5dp"-->
-<!--                android:drawablePadding="5dp"-->
-<!--                android:layout_weight="0"-->
-<!--                android:drawableLeft="@drawable/ic_date_range_black_24dp"-->
-<!--                />-->
-<!--            <View-->
-<!--                android:id="@+id/divider4"-->
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_margin="5dp"-->
-
-<!--                android:background="?android:attr/listDivider" />-->
             <ImageButton
                 android:id="@+id/bookmark"
                 android:layout_width="wrap_content"
@@ -219,16 +185,9 @@
                 />
         </LinearLayout>
 
+    </LinearLayout>
 
 
+</ScrollView>
 
-
-<!--            </LinearLayout>-->
-<!--        </HorizontalScrollView>-->
-
-         </LinearLayout>
-
-
-    </ScrollView>
-
-</androidx.cardview.widget.CardView>
+<!--</androidx.cardview.widget.CardView>-->

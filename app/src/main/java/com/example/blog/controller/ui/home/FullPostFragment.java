@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,14 +56,14 @@ public class FullPostFragment extends Fragment {
     private String TAG = "fullPostFragment";
     IResult mResultCallback = null;
     FetchJson mVolleyService;
-    CardView fullpostCard;
+    ScrollView fullpostCard;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
           View root = inflater.inflate(R.layout.full_post, container, false);
 //
-        fullpostCard=root.findViewById(R.id.fullpostCard);
+        fullpostCard=root.findViewById(R.id.fullpost);
 
             postPic=root.findViewById(R.id.post_pic);
             postTitle=root.findViewById(R.id.postTitle);
@@ -73,9 +74,9 @@ public class FullPostFragment extends Fragment {
             created_at=root.findViewById(R.id.time);
             catBtn=root.findViewById(R.id.catBtn);
 
-            profilePic=root.findViewById(R.id.ph_profilePic);
-            userName=root.findViewById(R.id.ph_name);
-            profileBackground=root.findViewById(R.id.profile_background);
+//            profilePic=root.findViewById(R.id.ph_profilePic);
+//            userName=root.findViewById(R.id.ph_name);
+//            profileBackground=root.findViewById(R.id.profile_background);
 
             bookmark=root.findViewById(R.id.bookmark);
 
@@ -130,18 +131,18 @@ public class FullPostFragment extends Fragment {
         created_at.setText(time);
 
 
-        if (post.getProfilePic().equals("default")) {
-            Picasso.with(getContext()).
-                    load(R.drawable.default_profile_pic).into(profilePic);
-        } else {
-            Picasso.with(getContext()).
-                    load(post.getProfilePic()).into(profilePic);
-
-        }
+//        if (post.getProfilePic().equals("default")) {
+//            Picasso.with(getContext()).
+//                    load(R.drawable.default_profile_pic).into(profilePic);
+//        } else {
+//            Picasso.with(getContext()).
+//                    load(post.getProfilePic()).into(profilePic);
+//
+//        }
         catBtn.setText(post.getCategory_name());
 
         //name
-        userName.setText(post.getUsername());
+//        userName.setText(post.getUsername());
 
 
         final String img = post.getImage();
@@ -162,8 +163,8 @@ public class FullPostFragment extends Fragment {
         });
 
 
-        userName.setOnClickListener(profileListener);
-        profilePic.setOnClickListener(profileListener);
+//        userName.setOnClickListener(profileListener);
+//        profilePic.setOnClickListener(profileListener);
 
         catBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,17 +214,17 @@ public class FullPostFragment extends Fragment {
 //
     }
 
-    View.OnClickListener profileListener = new View.OnClickListener() {
-        @Override
-        public void onClick(android.view.View view) {
-
-            Intent intent =new Intent(getContext(), ProfileActivity.class);
-            intent.putExtra("user_id",post.getUser_id());
-            Log.d("tag", "onClick: "+post.getUser_id());
-            startActivity(intent);
-
-        }
-    };
+//    View.OnClickListener profileListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(android.view.View view) {
+//
+//            Intent intent =new Intent(getContext(), ProfileActivity.class);
+//            intent.putExtra("user_id",post.getUser_id());
+//            Log.d("tag", "onClick: "+post.getUser_id());
+//            startActivity(intent);
+//
+//        }
+//    };
 
     void initVolleyCallback(){
         mResultCallback = new IResult() {
