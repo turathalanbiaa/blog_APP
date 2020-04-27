@@ -79,7 +79,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     public ArrayList<Posts> loadHandler() {
         String result = "";
-        String query = "Select*FROM " + TABLE_POSTS;
+        String query = "Select*FROM " + TABLE_POSTS+" ORDER BY "+COLUMN_ID+" DESC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Posts posts=new Posts();
