@@ -3,6 +3,7 @@ package com.example.blog.controller.ui.comments;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ExpandedPostFragment extends Fragment {
 
-    int postId;
+    String id;
+    boolean notification=false;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
          View root = inflater.inflate(R.layout.expanded_post, container, false);
@@ -38,6 +41,12 @@ public class ExpandedPostFragment extends Fragment {
         fab.hide();
 
         Posts post=new Posts();
+
+        if(getArguments().getInt("notify")==1 ){
+            id=getArguments().getString("postId");
+            notification=true;
+
+        }
         if(getArguments()!=null)
             post=getArguments().getParcelable("post");
 
@@ -46,13 +55,24 @@ public class ExpandedPostFragment extends Fragment {
         CommentBarFragment commentBar=new CommentBarFragment();
 
         //
+
         Bundle bundle=new Bundle();
-        bundle.putParcelable("post",post);
+        if(notification){
+            bundle.putInt("notify",1);
+            bundle.putString("postId",id);
+
+        }
+        else
+            bundle.putParcelable("post",post);
+
         postFragment.setArguments(bundle);
-        commentsFragment.setArguments(bundle);
+//        commentsFragment.setArguments(bundle);
 
         Bundle bundle2=new Bundle();
-        bundle2.putInt("postId",post.getId());
+        if(notification)
+            bundle2.putInt("postId",Integer.parseInt(id));
+        else
+            bundle2.putInt("postId",post.getId());
         commentBar.setArguments(bundle2);
         commentsFragment.setArguments(bundle2);
 

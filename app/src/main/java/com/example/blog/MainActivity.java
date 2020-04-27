@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
             bundle.putInt("notify",1);
             bundle.putString("postId",intent.getExtras().getString("id"));
             intent.removeExtra("id");
-            navController.navigate(R.id.nav_full_post,bundle);
+            navController.navigate(R.id.nav_post,bundle);
         }
         Bundle extras = getIntent().getExtras();
         int notify=extras.getInt("notify",0);
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements CatDropDownFragme
                 Bundle bundle = new Bundle();
                 bundle.putInt("notify",1);
                 bundle.putString("postId",postId);
-                navController.navigate(R.id.nav_full_post,bundle);
+                navController.navigate(R.id.nav_post,bundle);
             }
         }
 

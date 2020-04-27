@@ -170,6 +170,7 @@ public class SearchFragment extends Fragment implements   ClickListenerInterface
 
                 if(! text.isEmpty()){
                     clear.setVisibility(View.VISIBLE);
+                    adapter.clear();
                     searchForUsers(search.getText().toString());
                 }
 //
@@ -469,7 +470,7 @@ void hideKeyboard(Activity activity) {
 //        bundle.putInt("post",adapter.getItem(position).getId());
         bundle.putParcelable("post",adapter.getItem(position));
 
-        Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_post,bundle);
+        Navigation.findNavController(view).navigate(R.id.action_nav_search_to_nav_post,bundle);
 //
     }
 
