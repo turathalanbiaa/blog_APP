@@ -208,7 +208,7 @@ public class SettingsDialogFragment extends DialogFragment  {
             }
         });
 
-        getDialog().setTitle("CommentsDialogFragment");
+//        getDialog().setTitle("CommentsDialogFragment");
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_round_corner);
 
         return view;

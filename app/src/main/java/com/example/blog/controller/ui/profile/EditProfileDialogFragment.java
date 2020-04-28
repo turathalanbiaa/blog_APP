@@ -183,7 +183,7 @@ public class EditProfileDialogFragment extends DialogFragment  {
 
 
 
-        getDialog().setTitle("ProfileEditDialogFragment");
+//        getDialog().setTitle("ProfileEditDialogFragment");
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_round_corner);
 
         return view;

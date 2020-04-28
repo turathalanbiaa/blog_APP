@@ -49,7 +49,7 @@ public class CommentsDialogFragment extends DialogFragment  {
         if(prefs.getString("user_id",null)!=null || !loggedOut)
             getChildFragmentManager().beginTransaction().replace(R.id.dialogCommentBarFrame, commentBar, "commentBarFrame").commit();
 
-        getDialog().setTitle("CommentsDialogFragment");
+//        getDialog().setTitle("CommentsDialogFragment");
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_round_corner);
 
         return view;
