@@ -48,6 +48,7 @@ public class SettingsDialogFragment extends DialogFragment  {
 
     public SettingsDialogFragment(){}
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -208,6 +209,7 @@ public class SettingsDialogFragment extends DialogFragment  {
             }
         });
 
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 //        getDialog().setTitle("CommentsDialogFragment");
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_round_corner);
 
