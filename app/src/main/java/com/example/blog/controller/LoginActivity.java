@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean turath=false;
     String fbId,fbName,fbPic;
      String fb_user_id;
+    int c=5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +165,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveFacebookLogin(String id, String name, String img, String email) {
+        progress.show();
         Log.d(TAG, "saveFacebookLogin: "+email);
         String url=baseUrl.getUrl(baseUrl.getFbLoginInDb());
         initVolleyCallback();
@@ -332,6 +334,21 @@ public class LoginActivity extends AppCompatActivity {
 
                 progress.dismiss();
 
+                if(requestType.equals("fb")){
+                    if(c>0){
+                        progress.show();
+                        getUserProfile(AccessToken.getCurrentAccessToken());
+                        c--;
+                    }
+                    else{
+                        LoginManager.getInstance().logOut();
+                        Toast.makeText(getApplicationContext(),R.string.server_error,Toast.LENGTH_LONG).show();
+                    }
+
+
+
+                }
+
             }
         };
     }
@@ -417,6 +434,12 @@ public class LoginActivity extends AppCompatActivity {
         manager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
 

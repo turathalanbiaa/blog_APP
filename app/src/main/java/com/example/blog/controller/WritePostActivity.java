@@ -137,6 +137,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
 
         if(!loggedOut){
            userID=Profile.getCurrentProfile().getId();
+
         }
         else if(prefs.getString("user_id",null)!=null){
             userID=prefs.getString("user_id",null);
@@ -145,7 +146,7 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
             Toast.makeText(getApplicationContext(),R.string.must_login_to_post,Toast.LENGTH_SHORT).show();
             finish();
         }
-
+        checkId(userID);
         uploadImg=findViewById(R.id.uploadImg);
         Button openGallary=findViewById(R.id.getImgFromGallary);
 //        if(updatePost)
@@ -298,6 +299,16 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
 
     }
 
+    private void checkId(String userId) {
+        String url=baseUrl.getUrl(baseUrl.getProfileInfo());
+        initVolleyCallback();
+        mVolleyService =new FetchJson(mResultCallback,getApplicationContext());
+        Map<String,String> params=new HashMap<>();
+        params.put("id",userId);
+        JSONObject sendJson=new JSONObject(params);
+        mVolleyService.postDataVolley("check",url,sendJson);
+    }
+
 
     String getTags() {
         String tagsStr="";
@@ -361,12 +372,31 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
                 Log.d(TAG, "Volley JSON post" + response);
 
                 buttonActive();
-                if(requestType.equals("updatePost")){
+                if(requestType.equals("check")){
+                    String msg=null;
+                    try {
+                        msg=response.getString("message");
+                        Log.e(TAG, "notifySuccess: "+msg );
+                    }catch (Exception e){}
+                    if(msg != null && msg.equalsIgnoreCase("NOT FOUND")){
+
+                        Toast.makeText(getApplicationContext(),R.string.relogin,Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), LogoutActivity.class);
+                        intent.putExtra("check",1);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                }
+
+               else if(requestType.equals("updatePost")){
                     finish();
                 }
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                else {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
 
 //                Toast.makeText(getApplicationContext(),"//"+response,Toast.LENGTH_LONG).show();
@@ -387,6 +417,9 @@ public class WritePostActivity extends AppCompatActivity implements CatDropDownF
 
 
                 buttonActive();
+                if(requestType.equalsIgnoreCase("check")){
+                    checkId(userID);
+                }
 //                Toast.makeText(getApplicationContext(),"hm"+error,Toast.LENGTH_LONG).show();
 
 

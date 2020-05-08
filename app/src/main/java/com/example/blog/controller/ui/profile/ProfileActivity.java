@@ -57,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
     FetchJson mVolleyService;
     int points;
     boolean myProfile=false;
+    int c=14;
     private CommentFragmentInterface comentFragmentInterfaceListener;
 
 
@@ -203,7 +204,7 @@ public class ProfileActivity extends AppCompatActivity implements EditProfileDia
             public void notifyError(String requestType, VolleyError error) {
                 Log.d(TAG, "Volley requester " + requestType);
                 Log.d(TAG, "Volley JSON post" + error);
-                int c=10;
+
                 if(c>0) {
                     loadProfile();
                     c--;

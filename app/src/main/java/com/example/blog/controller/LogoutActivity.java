@@ -23,9 +23,16 @@ public class LogoutActivity extends AppCompatActivity {
         SharedPreferences.Editor editor=prefs.edit();
         editor.clear();
         editor.apply();
+        Intent i = getIntent();
+        if(i.getIntExtra("check",0)==1){
+            Intent intent =new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(intent);
+        }
 
-        Intent intent =new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        else {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
         finish();
     }
 }

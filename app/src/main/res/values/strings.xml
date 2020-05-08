@@ -57,6 +57,7 @@
     <string name="delete_complete">تم الحذف</string>
     <string name="delete_failed"> فشل الحذف</string>
     <string name="email_taken"> البريد الالكتروني موجود مسبقا</string>
+    <string name="relogin">خطأ، يرجى اعادة تسجيل الدخول</string>
 
     //loading errors
     <string name="no_connection">لا يوجد اتصال...</string>
